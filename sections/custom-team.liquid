@@ -1,4 +1,10 @@
-{{ 'custom-team.css' | asset_url | stylesheet_tag }}
+{% if template contains "index" or template contains "collection" or template contains "product" %}
+	
+{% else %}
+	<style>.team_section{margin:100px 0}.fancybox-container .fancybox-bg{display:block}.fancybox-iframe,.fancybox-video{object-fit:cover}.team_section .member_mains{margin-bottom:90px}@media screen and (max-width: 1680.98px){.team_section{margin:60px 0}.team_section .button_block .button{max-width:430px}}@media screen and (max-width: 767.98px){.team_section .member_mains{margin-bottom:50px}}</style>
+{% endif %}
+
+<link rel="stylesheet" data-href="{{ 'custom-team.css' | asset_url }}">
 <div class="team_section">
    {% if section.settings.main_heading != blank %}
     <div class="heading_row title_col text_{{ section.settings.desktop_content_alignment }}">
@@ -86,7 +92,7 @@
   <div class="video_popup" id="myVideo--{{ block.id }}" style="display:none;">
      
 
-    <iframe width="580" height="375" src="https://www.youtube.com/embed/{{ block.settings.video_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframelazy data-class="LazyLoad" width="580" height="375" data-src="https://www.youtube.com/embed/{{ block.settings.video_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>                  
     
   {% endif %}
@@ -96,7 +102,7 @@
 
 
 
-{% style %}
+<style>
  {% for block in section.blocks %}
     .item__{{ block.id }} .member_img {
         width: 390px;
@@ -182,7 +188,7 @@
     }
   {% endfor %}
   
-{% endstyle %}
+</style>
 
 
                       
@@ -316,11 +322,7 @@
     ]
   }
 {% endschema %}
-
-{% stylesheet %}
-{% endstylesheet %}
-
-{% javascript %}
+<script type="lazyload_int">
   $('.team_slider_center').slick({
    centerPadding: '60px',
   centerMode: true,
@@ -342,4 +344,4 @@
     }
   ]
 });
-{% endjavascript %}
+</script>

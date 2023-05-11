@@ -1,6 +1,7 @@
 <!doctype html>
 <html class="no-js" lang="{{ request.locale.iso_code }}">
   <head>
+    {% render 'wnw_header' %}
    <!-- Added by AVADA Cookies Bar -->
    {% include 'avada-cookies-bar' %}
    <!-- /Added by AVADA Cookies Bar -->
@@ -34,7 +35,15 @@
     {% render 'meta-tags' %}
 
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
-    {%- render 'header-scripts.zipifypages', renderctx: 'thm' -%}{{ content_for_header }}
+    {%- render 'header-scripts.zipifypages', renderctx: 'thm' -%}
+    
+    {%- if request.design_mode or template contains 'cart' or template contains 'checkout' -%}
+        {{ content_for_header }}
+    {%- else -%}
+        {% capture content_for_header2 %}{{ content_for_header }}{% endcapture %}
+        {{ content_for_header2 | replace: ' defer="defer" ', ' type="lazyload_int" ' | replace: " src=", " data-src="| replace: "DOMContentLoaded", "w3-DOMContentLoaded" | replace: "window.addEventListener('load', asyncLoad, false);", "window.addEventListener('w3-DOMContentLoaded', asyncLoad, false);" | replace: "addEventListener('load', prefetchAssets);", "addEventListener('w3-DOMContentLoaded', prefetchAssets);" }}
+        <script>var trekkie=[];trekkie.integrations=!0;window.BOOMR={},window.BOOMR.version=true;</script>
+    {%- endif -%}
 
     {%- liquid
       assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
@@ -42,7 +51,18 @@
       assign body_font_bold_italic = body_font_bold | font_modify: 'style', 'italic'
     %}
 
-    {% style %}
+    {% if template contains "index" %}
+    	{% render "index-css" %}
+    {% elsif template contains "collection" %}
+    	{% render "collection-css" %}
+    {% elsif template contains "product" %}
+    	{% render "product-css" %}
+    {% else %}
+    	{% render "all-css" %}
+    {% endif %}
+
+    <style>
+      <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
       {{ settings.type_body_font | font_face: font_display: 'swap' }}
       {{ body_font_bold | font_face: font_display: 'swap' }}
       {{ body_font_italic | font_face: font_display: 'swap' }}
@@ -199,12 +219,12 @@
           font-size: 1.5rem;
         }
       }
-    {% endstyle %}
+    </style>
 
     
-    {{ 'slick.css' | asset_url | stylesheet_tag }}
-    {{ 'jquery.fancybox.min.css' | asset_url | stylesheet_tag }}
-    {{ 'base.css' | asset_url | stylesheet_tag }}
+    <link rel="stylesheet" data-href="{{ 'slick.css' | asset_url }}">
+    <link rel="stylesheet" data-href="{{ 'jquery.fancybox.min.css' | asset_url }}">
+    <link rel="stylesheet" data-href="{{ 'base.css' | asset_url }}">
 
     {%- unless settings.type_body_font.system? -%}
       <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
@@ -214,7 +234,7 @@
     {%- endunless -%}
 
     {%- if settings.predictive_search_enabled -%}
-      <link rel="stylesheet" href="{{ 'component-predictive-search.css' | asset_url }}" media="print" onload="this.media='all'">
+      <link rel="stylesheet" data-href="{{ 'component-predictive-search.css' | asset_url }}">
     {%- endif -%}
 
     <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
@@ -222,16 +242,17 @@
       document.documentElement.classList.add('shopify-design-mode');
     }
     </script>
-    {{ 'main-style.css' | asset_url | stylesheet_tag }}
+    <link rel="stylesheet" data-href="{{ 'main-style.css' | asset_url }}">
 
-<script type="text/javascript">
+<script type="lazyload_int">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "amzhagm2qp");
 </script>
-  
+    {% render 'custom-css' %}
+  {% render 'app-block' %}
   </head>
 
   <body class="gradient {{ template.name }}--">
@@ -564,9 +585,9 @@
     <script defer src="https://cdn.pickystory.com/widget/dist/latest/pickystory-widget.min.js"></script>
   {% endif %}
   <!-- PickyStory end snippet "main_widget_script" -->
+ {% include 'smile-initializer' %}
+  {% render 'wnw_footer' %}
 {% render 'oneclickupsellapp-theme', oneclickupsellapp: oneclickupsellapp %}
 {% assign oneclickupsellapp = true %}
- {% include 'smile-initializer' %}
-
 </body>
 </html>

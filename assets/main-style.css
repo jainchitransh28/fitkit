@@ -239,7 +239,7 @@ h4, .h4 {
 .bg_spirit {
   position: relative;
   overflow: hidden;
-  background-image: url('//cdn.shopify.com/s/files/1/0602/6592/2756/t/16/assets/show3.png?v=32289607160497755201668051560'), url('//cdn.shopify.com/s/files/1/0602/6592/2756/t/16/assets/show4.png?v=61446935413663943621668051552');
+  background-image: url('//cdn.shopify.com/s/files/1/0602/6592/2756/t/22/assets/show3.png?v=170254557513912285111681976991'), url('//cdn.shopify.com/s/files/1/0602/6592/2756/t/22/assets/show4.png?v=110221842238587113091681976987');
   background-repeat: no-repeat;
   background-position: right -10% bottom 23%, left -4.5% top 50%;
   background-size: auto 10%, auto 10%;
@@ -253,14 +253,14 @@ h4, .h4 {
   z-index: -1;
 }
 .bg_spirit:after {
-  background-image: url('//cdn.shopify.com/s/files/1/0602/6592/2756/t/16/assets/show2.png?v=51065206181278785261668051554');
+  background-image: url('//cdn.shopify.com/s/files/1/0602/6592/2756/t/22/assets/show2.png?v=51065206181278785261681817371');
   width: 200px;
   height: 350px;
   left: -8%;
   top: 3%;
 }
 .bg_spirit:before {
-  background-image: url('//cdn.shopify.com/s/files/1/0602/6592/2756/t/16/assets/show1.png?v=85488301340369034561668051576');
+  background-image: url('//cdn.shopify.com/s/files/1/0602/6592/2756/t/22/assets/show1.png?v=69481708134996036531681976975');
   width: 200px;
   height: 240px;
   right: -5%;

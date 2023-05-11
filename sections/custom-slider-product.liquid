@@ -1,4 +1,9 @@
-{{ 'custom-slider-product.css' | asset_url | stylesheet_tag }}
+{% if template contains "index" or template contains "collection" or template contains "product" %}
+	
+{% else %}
+	<style>.slider_prod_section .slick-track img {margin: 0px auto;}.slider_prod_section .slick-slide {padding: 0px 40px;}@media screen and (max-width: 1680.98px) {.slider_prod_section .slick-slide {padding: 0px 30px;}}@media screen and (max-width: 1024.98px) {.slider_prod_section .slick-slide {padding: 0px 20px;}}@media screen and (max-width: 767.98px) {.slider_prod_section .slick-slide {width: 200px;}}</style>
+{% endif %}
+<link rel="stylesheet" data-href="{{ 'custom-slider-product.css' | asset_url }}">
 
 {% if section.settings.main_heading != blank %}
 <div class="slider_prod_section spacer">
@@ -50,7 +55,7 @@
 </div>
 {% endif %}
 
-{% style %}
+<style>
   #shopify-section-{{ section.id}} .slider_prod_section {
     margin: 100px 0px;
   }
@@ -74,8 +79,7 @@
     }
   }
   
-{%  endstyle %}
-
+</style>
   
 {% schema %}
   {
@@ -211,10 +215,7 @@
 {% endschema %}
 
 
-{% stylesheet %}
-{% endstylesheet %}
-
-{% javascript %}
+<script type="lazyload_int">
   $('.center_slider').slick({
     centerMode: true,
     centerPadding: '60px',
@@ -262,4 +263,4 @@
       }
     ] 
   });
-{% endjavascript %}
+  </script>

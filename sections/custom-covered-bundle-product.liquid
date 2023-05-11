@@ -21,7 +21,7 @@
         <div class="item--{{ product.id }} itm" {{ block.shopify_attributes }}>
           <div class="inner_box_item">
             <div class="product_img">
-              <img src="{{ product.images[0] | product_img_url: 'large' }}" alt{{ shop.name }} class="img_item">  
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-class="LazyLoad" data-src="{{ product.images[0] | product_img_url: 'large' }}" alt{{ shop.name }} class="img_item">  
             </div>
             
             <div class="prod_content_area center">

@@ -1,4 +1,10 @@
-{{ 'custom-marquee.css' | asset_url | stylesheet_tag }}
+{% if template contains "index" or template contains "collection" or template contains "product" %}
+	
+{% else %}
+	<style>.marquee_row .slidexx{display:flex;align-items:center;padding:0 20px}.marquee_row .label{font-size:calc(var(--font-body-scale) * 13px);line-height:calc(var(--font-body-scale) * 16px);padding-left:2px}.marquee_row .slidexx p{margin:0}.marquee_row .slick-slide{font-size:calc(var(--font-body-scale) * 85%)}.marquee_row .slick-slide a,.marquee_row .slidexx p{color:#fff}@media screen and (max-width: 1680.98px){.marquee_row .label{font-size:calc(var(--font-body-scale) * 11px);line-height:calc(var(--font-body-scale) * 14px)}.marquee_row .icon_item svg{width:17px;height:17px}}</style>
+{% endif %}
+<link rel="stylesheet" data-href="{{ 'custom-marquee.css' | asset_url }}">
+
 {%  if section.blocks.size > 0 %}
   <div class="marquee_section {% if section.settings.top_bottom_margin == true %} my_spacer {% endif %}">
     <div class="marquee_row">
@@ -24,7 +30,7 @@
   </div>
 {% endif %}
                       
-{% style %}
+<style>
   .marquee_section {
     overflow: hidden;
     background-color: {{ section.settings.bg_color}};
@@ -38,8 +44,7 @@
   }
 }
 
-  
-{% endstyle %}
+</style>
 
 {% schema %}
   {
@@ -88,10 +93,7 @@
   }
 {% endschema %}
 
-{% stylesheet %}
-{% endstylesheet %}
-
-{% javascript %}
+<script type="lazyload_int">
   $(".one-time").slick({
     centerMode:true,
     draggable: false,
@@ -106,4 +108,4 @@
     arrows: false,
     variableWidth: true
     });
-{% endjavascript %}
+</script>
