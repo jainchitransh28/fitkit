@@ -1,0 +1,143 @@
+{% if section.settings.main_heading != blank %}
+<div class="video_section my_spacer">
+     {% if section.settings.main_heading != blank %}
+      <div class="heading_row title_col text_{{ section.settings.desktop_content_alignment }}">
+        <div class="page-width">
+            <h2>
+              {{ section.settings.main_heading }}
+            </h2>
+          {% if section.settings.head_line != blank %}
+            <div class="sub_description">
+              {{ section.settings.head_line }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if section.settings.video_url != blank %}
+    <div class="video_iframe">
+      <div class="page-width">
+        <div class="video_outer">
+           <div class="wrapper">
+            <video controls class="iframe">
+              <source src="{{ section.settings.video_url }}" type="video/mp4">
+              <source src="{{ section.settings.video_url }}" type="video/ogg">
+              Your browser does not support HTML video.
+            </video>
+        </div>
+        </div>
+       
+      </div>
+    </div>
+   {% endif %}
+</div>
+{% endif %}
+
+
+{% style %}
+  #shopify-section-{{ section.id}} .video_iframe {
+    background-image: url('{{ 'fade-dot.png' | asset_url }}');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left top;
+    padding: 0px 15px 90px;
+  }
+   #shopify-section-{{ section.id}} .video_outer {
+    max-width: 750px;
+    margin: 0 auto;
+  }
+  #shopify-section-{{ section.id}} .wrapper {
+     position: relative;
+     width: 100%;
+     height: 0;
+     padding-bottom: 56.25%;
+    
+  }
+  #shopify-section-{{ section.id}} .wrapper .iframe {
+    position:absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 40px;
+    box-shadow: 0 0 10px 2px rgb(0 0 0 / 20%);
+    object-fit: cover;
+  }
+
+  @media screen and (max-width: 1680.98px) {
+   #shopify-section-{{ section.id}} .wrapper .iframe {
+    border-radius: 30px;
+  }
+
+  @media screen and (max-width: 989.98px) {
+   #shopify-section-{{ section.id}} .wrapper .iframe {
+    border-radius: 20px;
+  }   
+}
+{%  endstyle %}
+
+{% schema %}
+  {
+    "name": "Custom Video",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Content"
+        },
+        {
+            "type": "text",
+            "id": "main_heading",
+            "label": "Heading",
+            "default": "Heading"
+        },
+        {
+            "type": "richtext",
+            "id": "head_line",
+            "label": "Description",
+            "default": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>" 
+        },
+        {
+          "type": "select",
+          "id": "desktop_content_alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__1.label"
+            },
+            {
+              "value": "center",
+              "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__2.label"
+            },
+            {
+              "value": "right",
+              "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__3.label"
+            }
+          ],
+        "default": "center",
+        "label": "Text Alignment"
+      },
+      {
+          "type": "header",
+          "content": "Video"
+      },
+      {
+          "type": "text",
+          "id": "video_url",
+          "label": "Video URL"
+      }
+    ],
+    "presets":[
+      {
+        "name": "Custom Video"
+      }
+    ]
+    
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

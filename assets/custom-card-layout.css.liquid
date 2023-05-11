@@ -1,0 +1,63 @@
+.card_mains_layout {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.card_mains_layout .grid_column {
+  flex: 0 0 33.33%;
+  max-width: 33.33%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.card_mains_layout .cardBox {
+  max-width: 400px;
+  margin: 0 auto 30px;
+}
+.card_mains_layout .card_img_item {
+  margin-bottom: 35px;
+}
+.card_mains_layout .card_img_item img {
+  border-radius: 40px;
+  display: block;
+}
+.card_mains_layout .cardBox_content, .card_mains_layout .cardBox_content h3 {
+  color: #fff;
+}
+.card_mains_layout .cardBox_content .title_col {
+  margin-bottom: 25px;
+}
+.card_mains_layout .cardBox_content .body_content {
+  margin-bottom: 35px;
+}
+
+@media screen and (max-width: 1680.98px) {
+  .card_mains_layout .cardBox_content .title_col {
+    margin-bottom: 15px;
+  }  
+}
+
+@media screen and (max-width: 989.98px) {
+  .card_layout_section .grid_column {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  
+  .card_mains_layout .cardBox_content .body_content {
+    margin-bottom: 25px;
+  }
+}
+
+@media screen and (max-width: 575.98px) {
+  .card_mains_layout .cardBox {
+    text-align: center;
+  }
+  .card_mains_layout .grid_column {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .card_mains_layout .grid_column:last-child .cardBox {
+    margin-bottom: 0px;
+  }
+}
+

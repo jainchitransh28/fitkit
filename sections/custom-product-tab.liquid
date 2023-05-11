@@ -1,0 +1,123 @@
+{{ 'custom-product-tab.css' | asset_url | stylesheet_tag }}
+
+{% if product.description contains '<!--split-->' %}
+  {% if section.settings.main_heading != blank %}
+  <div class="product_tab_section my_spacer">
+   
+      {% if section.settings.main_heading != blank %}
+        <div class="heading_row title_col text_{{ section.settings.desktop_content_alignment }}">
+          <div class="page-width">
+            <h2>
+              {{ section.settings.main_heading }}
+            </h2>
+            {% if section.settings.head_line != blank %}
+              <div class="sub_description">
+                {{ section.settings.head_line }}
+              </div>
+            {% endif %}
+    
+            <div class="image_under_heading">
+              <ul class="text_{{ section.settings.desktop_content_alignment }}">
+                <li>
+                  <img src="{{ 'made-in-uk.png' | asset_url }}" alt="{{ shop.name }}"> 
+                </li>
+                <li>
+                  <img src="{{ 'natural-suppport.png' | asset_url }}" alt="{{ shop.name }}"> 
+                </li>
+                <li>
+                  <img src="{{ 'free-vegan.png' | asset_url }}" alt="{{ shop.name }}"> 
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+  
+    
+    <div class="tab_mainBox">
+      <div class="page-width">
+        <div class="ctm_description">
+          {% assign new_dec = product.description | split: '<!--split-->' | last %}
+          {% assign spl_dec = new_dec | split: '<h6>' %}
+        
+          <ul class="prodTabs">
+            {% assign count = 0 %}
+            {% for dec in spl_dec %}
+              {% unless forloop.index == 1 %}
+                <li class="tablinks"><span class="{% if count == 0 %}active{% endif %}" data-href="#{{ dec | split: '</h6>' | first | escape | handleize }}">{{ dec | split: '</h6>' | first }}</span></li>
+                {% assign count = count | plus: 1 %}
+              {% endunless %}
+            {% endfor %}
+          </ul>
+          <div class="tabs-out">
+            
+            {% assign ctm_count = 0 %}
+            {% for dec in spl_dec %}
+              {% unless forloop.index == 1 %}
+                <div class="tablinks accordionStyler"><span class="{% if ctm_count == 0 %}active{% endif %}" data-href="#{{ dec | split: '</h6>' | first | escape | handleize }}">{{ dec | split: '</h6>' | first }}</span></div>
+                {% assign count = count | plus: 1 %}
+                <div id="{{ dec | split: '</h6>' | first | escape | handleize }}" class="tab-main {% if ctm_count == 0 %}active in{% endif %}">
+                  {{ dec | split: '</h6>' | last | split: '<h6>' | first }}
+                </div>
+                {% assign ctm_count = ctm_count | plus: 1 %}
+              {% endunless %}
+            {% endfor %}   
+          </div>
+        </div>
+      </div>
+    </div>  
+    
+  </div>
+  {% endif %}
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Custom Product Tab",
+    "settings": [
+       {
+            "type": "text",
+            "id": "main_heading",
+            "label": "Heading",
+            "default": "Heading"
+        },
+        {
+            "type": "richtext",
+            "id": "head_line",
+            "label": "Description",
+            "default": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>" 
+        },
+        {
+            "type": "select",
+            "id": "desktop_content_alignment",
+            "options": [
+              {
+                "value": "left",
+                "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__1.label"
+              },
+              {
+                "value": "center",
+                "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__2.label"
+              },
+              {
+                "value": "right",
+                "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__3.label"
+              }
+            ],
+          "default": "center",
+          "label": "Text Alignment"
+       }  
+    ],
+     "presets": [
+        {
+          "name": "Custom Product Tab"
+        }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

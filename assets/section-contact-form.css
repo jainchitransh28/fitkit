@@ -1,0 +1,172 @@
+.contact img {
+  max-width: 100%;
+}
+
+.contact .form__message {
+  align-items: flex-start;
+}
+
+.contact .icon-success {
+  margin-top: 0.2rem;
+}
+
+.contact .field {
+  margin-bottom: 1.5rem;
+}
+
+@media screen and (min-width: 750px) {
+  .contact .field {
+    margin-bottom: 2rem;
+  }
+}
+
+.contact__button {
+  margin-top: 3rem;
+}
+
+@media screen and (min-width: 750px) {
+  .contact__button {
+    margin-top: 4rem;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .contact__fields {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 2rem;
+  }
+}
+
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  custom css start
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.contact__fields {
+  grid-column-gap: 15px;
+}
+#ContactForm .field:after, #ContactForm .field:before {
+  display: none;
+}
+#ContactForm .field__input {
+  border-radius: 10px;
+  border: 1px solid #f3f3f3;
+  min-height: auto;
+  height: auto;
+
+  font-size: calc(var(--font-body-scale) * 13px);
+  line-height: calc(var(--font-body-scale) * 16px);
+  font-family: var(--font-body-family);
+  background-color:#f3f3f3;
+}
+#ContactForm .field__input, #ContactForm .field__input:focus {
+   padding: 11px 25px 8px;
+}
+.contact .field {
+  margin-bottom: 15px;
+}
+#ContactForm ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color:    #000000 !important;
+  opacity:  1 !important;
+  font-size: calc(var(--font-body-scale) * 13px);
+  line-height: calc(var(--font-body-scale) * 16px);
+  text-transform: uppercase;
+}
+#ContactForm :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #000000 !important;
+  opacity:  1 !important;
+  font-size: calc(var(--font-body-scale) * 13px);
+  line-height: calc(var(--font-body-scale) * 16px);
+  text-transform: uppercase;
+}
+#ContactForm ::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #000000 !important;
+  opacity:  1 !important;
+  font-size: calc(var(--font-body-scale) * 13px);
+  line-height: calc(var(--font-body-scale) * 16px);
+  text-transform: uppercase;
+}
+#ContactForm :-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #000000 !important;
+  opacity:  1 !important;
+  font-size: calc(var(--font-body-scale) * 13px);
+  line-height: calc(var(--font-body-scale) * 16px);
+  text-transform: uppercase;
+}
+#ContactForm ::-ms-input-placeholder { /* Microsoft Edge */
+  color:    #000000 !important;
+  opacity:  1 !important;
+  font-size: calc(var(--font-body-scale) * 13px);
+  line-height: calc(var(--font-body-scale) * 16px);
+  text-transform: uppercase;
+}
+#ContactForm ::placeholder { /* Most modern browsers support this now. */
+  color:    #000000 !important;
+  opacity:  1 !important;
+  font-size: calc(var(--font-body-scale) * 13px);
+  line-height: calc(var(--font-body-scale) * 16px);
+  text-transform: uppercase;
+}
+.contact_section .contact__button, .contact_section .form-status-list {
+  text-align: right;
+}
+.contact_section .form__message {
+    justify-content: end;
+}
+.form-status {
+  font-size: 14px;
+}
+.form__message {
+  font-size: 14px;
+}
+.form__message .icon, .customer .form__message svg {
+  height: 14px;
+  width: 14px;
+}
+.contact_section .contact__button {
+  margin-top: 30px;
+}
+.contact_section .contact__button .button {
+  min-width: 180px;
+}
+
+@media screen and (max-width: 767.98px) {
+  #ContactForm .field__input, #ContactForm .field__input:focus {
+     padding: 8px 20px 6px;
+  }
+  .contact_section .contact__button {
+    margin-top: 15px;
+  }
+  #ContactForm .field__input {
+    font-size: calc(var(--font-body-scale) * 10px);
+    line-height: calc(var(--font-body-scale) * 13px);
+  }
+  #ContactForm ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    font-size: calc(var(--font-body-scale) * 10px);
+    line-height: calc(var(--font-body-scale) * 13px);
+  }
+  #ContactForm :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    font-size: calc(var(--font-body-scale) * 10px);
+    line-height: calc(var(--font-body-scale) * 13px);
+  }
+  #ContactForm ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    font-size: calc(var(--font-body-scale) * 10px);
+    line-height: calc(var(--font-body-scale) * 13px);
+  }
+  #ContactForm :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    font-size: calc(var(--font-body-scale) * 10px);
+    line-height: calc(var(--font-body-scale) * 13px);
+  }
+ #ContactForm ::-ms-input-placeholder { /* Microsoft Edge */
+    font-size: calc(var(--font-body-scale) * 10px);
+    line-height: calc(var(--font-body-scale) * 13px);
+  }
+  #ContactForm ::placeholder { /* Most modern browsers support this now. */
+    font-size: calc(var(--font-body-scale) * 10px);
+    line-height: calc(var(--font-body-scale) * 13px);
+  }
+}
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  custom css close
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */

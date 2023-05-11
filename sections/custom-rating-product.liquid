@@ -1,0 +1,331 @@
+{{ 'custom-rating-product.css' | asset_url | stylesheet_tag }}
+
+{% if section.settings.main_heading != blank %}
+<div class="rating_prod_section">
+    <div class="page-width">
+     {% if section.settings.main_heading != blank %}
+      <div class="heading_row title_col text_{{ section.settings.desktop_content_alignment }}">
+          {% if section.settings.main_heading != blank %}
+            <h2>
+              {{ section.settings.main_heading }}
+            </h2>
+          {% endif %}
+        
+          {% if section.settings.head_line != blank %}
+            <div class="sub_description">
+              <p>
+                <span class="star">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                    <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                    <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                    <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                    <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                    <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                  </svg>
+                </span> 
+                <span>{{ section.settings.head_line }}</span>
+            </p>
+            </div>
+          {% endif %}
+      </div>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+    <div class="rating_grid_mains">
+      <div class="slider rating_slider ">
+         {% for block in section.blocks %}
+          <div class="swape_slide" {{ block.shopify_attributes }}>
+            <div class="card_slider">
+              <div class="img_col">
+                {% if block.settings.image != blank %}
+                    <img src="{{ block.settings.image | image_url: width: 400, height: 330, crop: 'center'}}" loading="lazy">
+                {% else %}
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
+              </div>
+              <div class="content_col">
+                <div class="review_col">
+                  <div class="rate_row ">
+                      <span class="rating_start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                        <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                        <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                        <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                        <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                        <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                        </svg>
+                      </span>
+                      <span class="rating_score">
+                        5/5 rating
+                      </span>
+
+                       {% comment %}
+                     {% if block.settings.read_review != blank %}
+                        <div class="read_more_rev">
+                          {{ block.settings.read_review }}
+                        </div>
+                    {% endif %}
+                     {% endcomment %}
+                  </div>
+                </div>
+               {% if block.settings.read_review != blank %}
+                  <div class="read_more_rev">
+                    {{ block.settings.read_review }}
+                  </div>
+                  {% endif %}
+           
+               {% if block.settings.body_content != blank %}
+                <div class="body_content">
+                  {{ block.settings.body_content }}
+                </div>
+               {% endif %}
+
+               {% if block.settings.client_name != blank %}
+                <div class="client_col">
+                  <span class="name_field">{{ block.settings.client_name }}</span>
+                   {% if block.settings.status != blank %}
+                    <span class="status_field">{{ block.settings.status }}</span>
+                  {% endif %}
+                </div>
+                {% endif %}
+                 
+              </div>
+            <div class="content_bottom">
+              <div class="left_element">
+               {% if block.settings.shop_text != blank  %}
+                <div class="label_ele">
+                  <a  href="{{ block.settings.shop_text_url }}">
+                  {{ block.settings.shop_text}}  
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28.965" height="28.965" viewBox="0 0 28.965 28.965">
+                    <g id="Group_333" data-name="Group 333" transform="translate(-327.518 -303.291)">
+                      <g id="Group_158" data-name="Group 158">
+                        <g id="Ellipse_35" data-name="Ellipse 35" transform="translate(327.518 303.291)" fill="none" stroke="#fff" stroke-width="2">
+                          <ellipse cx="14.482" cy="14.482" rx="14.482" ry="14.482" stroke="none"/>
+                          <ellipse cx="14.482" cy="14.482" rx="13.482" ry="13.482" fill="none"/>
+                        </g>
+                        <path id="Polygon_11" data-name="Polygon 11" d="M4.512,0,9.024,7.87H0Z" transform="translate(347.404 313.261) rotate(90)" fill="#fff"/>
+                      </g>
+                    </g>
+                  </svg>
+                  </a>
+                </div>
+                {% endif %}
+              </div>
+              <div class="right_element">
+               {% if block.settings.prod_img != blank %}
+                <div class="img_label">
+                  <img src="{{ block.settings.prod_img | image_url }}" alt="{{ shop.name }}" loading="lazy">
+                </div>
+                {% endif %}
+              </div>
+            </div>            
+           </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}                   
+  </div>
+</div>
+{% endif %}
+
+
+{% style %}
+  #shopify-section-{{ section.id}} .rating_prod_section {
+   background-image: url('{{ 'waver.jpg' | asset_url }}');
+    background-position: bottom center;
+    background-repeat: no-repeat; 
+    padding: 0px 15px 270px;
+    margin: 100px 0px;
+    background-size: 100% auto;
+  }
+
+  @media screen and (max-width: 1680.98px) {
+    #shopify-section-{{ section.id}} .rating_prod_section {
+      margin: 60px 0px;
+      padding: 0px 15px 200px;
+    }
+  }
+
+  @media screen and (max-width: 767.98px) {
+    #shopify-section-{{ section.id}} .rating_prod_section {
+      background-position: bottom left 65%;
+      padding: 0px 15px 150px;
+      background-size: auto 40%;
+    }
+  }
+  
+{% endstyle %}
+
+
+
+{% schema %}
+  {
+    "name": "Custom Rating Product",
+    "max_blocks": 3,
+    "settings": [
+        {
+            "type": "header",
+            "content": "Content"
+        },
+        {
+            "type": "text",
+            "id": "main_heading",
+            "label": "Heading",
+            "default": "Heading"
+        },
+        {
+            "type": "text",
+            "id": "head_line",
+            "label": "Rating & Review",
+            "default": "5/5 Rating" 
+        },
+        {
+          "type": "select",
+          "id": "desktop_content_alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__1.label"
+            },
+            {
+              "value": "center",
+              "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__2.label"
+            },
+            {
+              "value": "right",
+              "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__3.label"
+            }
+          ],
+        "default": "center",
+        "label": "Text Alignment"
+      }
+    ],
+    "blocks": [
+       {
+         "name": "Grid",
+         "type": "grid",
+         "settings": [
+           {
+               "type": "image_picker",
+               "id": "image",
+               "label": "Image"
+           },
+           {
+                "type": "richtext",
+                "id": "read_review",
+                "label": "Read More Review"
+           },
+           {
+                "type": "richtext",
+                "id": "body_content",
+                "label": "Description",
+                "default": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>"
+           },
+           {
+                "type": "text",
+                "id": "client_name",
+                "label": "Client Name",
+                "default": "JON"
+           },
+           {
+                "type": "text",
+                "id": "status",
+                "label": "Client Status",
+                "default": "VERIFIED"
+           },
+           {
+                "type": "text",
+                "id": "shop_text",
+                "label": "Text",
+                "default": "Text"
+           },
+           {
+                "type": "url",
+                "id": "shop_text_url",
+                "label": "Text URL"
+           },
+           {
+                "type": "image_picker",
+                "id": "prod_img",
+                "label": "Product Image"
+           }
+          
+         ]
+       }
+    ],
+    "presets": [
+      {
+        "name": "Custom Rating Product",
+        "blocks": [
+          {
+            "type": "grid"
+          },
+          {
+            "type": "grid"
+          },
+          {
+            "type": "grid"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+  $('.rating_slider').slick({
+    slidesToShow: 3,
+    dots: false,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3
+        }
+      },
+      {
+        breakpoint: 989,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          autoplay: true,
+          autoplaySpeed: 2500,
+          arrows: true,
+        }
+      },
+      {
+        breakpoint: 576,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          autoplay: true,
+          autoplaySpeed: 2500,
+          arrows: true,
+        }
+      }
+    ] 
+  });
+{% endjavascript %}

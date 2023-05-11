@@ -1,0 +1,194 @@
+ {{ 'custom-text-with-image.css' | asset_url | stylesheet_tag }}
+ 
+{% if section.settings.image != blank %}
+<div class="page-width">
+  <div class="mainEntry_element">
+    {% if section.settings.hlt_heading != blank %}
+      <div class="sub_heading">
+        {{ section.settings.hlt_heading }}
+      </div>
+    {% endif %}
+
+    {% if section.settings.main_heading != blank %}
+    <div class="main_heading effect_text">
+      <h1>
+       <span class="without_effect"> {{ section.settings.main_heading }}</span>  
+        <span class="typed-text"></span><span class="cursor">&nbsp;</span>
+      </h1>
+    </div>
+    {% endif %}
+
+    {%- if section.settings.button_label_1 != blank -%}
+    <div class="button_block">
+      <a{% if section.settings.button_link_1 == blank %} role="link" aria-disabled="true"{% else %} 
+        href="{{ section.settings.button_link_1 }}"{% endif %} 
+        class="button{% if section.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}">
+        {{ section.settings.button_label_1 | escape }}
+      </a>
+    </div>
+    {%- endif -%}
+  
+  </div>
+</div>
+{%- endif -%}
+ 
+{% style %}
+  #shopify-section-{{ section.id}}.text_image_section {
+    background-image: url('{{ section.settings.image | image_url }}');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #29292b;
+    padding: 200px 15px 150px;
+  }
+
+    @media screen and (max-width: 767.98px) {
+
+      {% if section.settings.mob_image %}
+      #shopify-section-{{ section.id}}.text_image_section {
+        padding: 265px 15px 30px;
+        background-image: url('{{ section.settings.mob_image | image_url }}');
+      }
+      {% else %}
+      #shopify-section-{{ section.id}}.text_image_section {
+        background-image: url('{{ section.settings.image | image_url }}');
+        padding: 265px 15px 30px;
+      }
+      {% endif %}
+      
+  }
+  
+{%  endstyle %}
+
+{% schema %}
+  {
+    "name": "Custom Text And Image",
+    "class": "text_image_section",
+    "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Background Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "mob_image",
+            "label": "Mobile Background Image"
+          },
+          {
+            "type": "text",
+            "id": "hlt_heading",
+            "label": "Top Heading"
+          },
+          {
+            "type": "text",
+            "id": "main_heading",
+            "label": "Main Heading"
+          },
+          {
+            "type": "header",
+            "content": "Effect text"
+          },
+          {
+            "type": "text",
+            "id": "effect_1",
+            "label": "Text 1"
+          },
+          {
+            "type": "text",
+            "id": "effect_2",
+            "label": "Text 2"
+          },
+          {
+            "type": "text",
+            "id": "effect_3",
+            "label": "Text 3"
+          },
+          {
+            "type": "text",
+            "id": "effect_4",
+            "label": "Text 4"
+          },
+          {
+            "type": "header",
+            "content": "Button"
+          },
+          {
+            "type": "text",
+            "id": "button_label_1",
+            "default": "Button label",
+            "label": "t:sections.image-banner.blocks.buttons.settings.button_label_1.label",
+            "info": "t:sections.image-banner.blocks.buttons.settings.button_label_1.info"
+          },
+          {
+              "type": "url",
+              "id": "button_link_1",
+              "label": "t:sections.image-banner.blocks.buttons.settings.button_link_1.label"
+          },
+          {
+              "type": "checkbox",
+              "id": "button_style_secondary_1",
+              "default": false,
+              "label": "t:sections.image-banner.blocks.buttons.settings.button_style_secondary_1.label"
+          }
+        
+    ],
+    "presets": [
+      {
+        "name": "Custom Text and Image"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+
+
+{% endjavascript %}
+
+<script>
+  const typedTextSpan = document.querySelector(".typed-text");
+  const cursorSpan = document.querySelector(".cursor");
+
+  const textArray = ["{{ section.settings.effect_1 }}", "{{ section.settings.effect_2 }}", "{{ section.settings.effect_3 }}", "{{ section.settings.effect_4 }}"];
+  const typingDelay = 100;
+  const erasingDelay = 100;
+  const newTextDelay = 1000; // Delay between current and next text
+  let textArrayIndex = 0;
+  let charIndex = 0;
+
+  function type() {
+    if (charIndex < textArray[textArrayIndex].length) {
+      if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+      typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+      charIndex++;
+      setTimeout(type, typingDelay);
+    } 
+    else {
+      cursorSpan.classList.remove("typing");
+    	setTimeout(erase, newTextDelay);
+    }
+  }
+
+  function erase() {
+  	if (charIndex > 0) {
+      if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+      typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex-1);
+      charIndex--;
+      setTimeout(erase, erasingDelay);
+    } 
+    else {
+      cursorSpan.classList.remove("typing");
+      textArrayIndex++;
+      if(textArrayIndex>=textArray.length) textArrayIndex=0;
+      setTimeout(type, typingDelay + 1100);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function() { // On DOM Load initiate the effect
+    if(textArray.length) setTimeout(type, newTextDelay + 250);
+  });
+</script>

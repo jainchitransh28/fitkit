@@ -1,0 +1,80 @@
+{% if section.settings.faq_desc != blank or section.settings.button_label_1 != blank %}
+<div class="more_ques_section text_center my_spacer">
+  <div class="page-width">
+    {% if section.settings.faq_desc != blank %}
+      <div class="sub_description">
+        {{ section.settings.faq_desc }}
+      </div>
+    {% endif %}
+
+    {%- if section.settings.button_label_1 != blank -%}
+      <div class="button_block ">
+        <a{% if section.settings.button_link_1 == blank %} role="link" aria-disabled="true"{% else %} 
+        href="{{ section.settings.button_link_1 }}"{% endif %} 
+        class="button bigger{% if section.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}">
+        {{ section.settings.button_label_1 | escape }}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+{%- endif -%}
+
+{% style %}
+  .more_ques_section .sub_description {
+    margin-bottom: 30px;
+  }
+{% endstyle %}
+
+
+{% schema %}
+  {
+    "name": "More Question",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Content"
+      },
+      {
+            "type": "richtext",
+            "id": "faq_desc",
+            "label": "Description",
+            "default": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>" 
+      },
+      {
+            "type": "header",
+            "content": "Button"
+        },
+        {
+          "type": "text",
+          "id": "button_label_1",
+          "default": "Button label",
+          "label": "t:sections.image-banner.blocks.buttons.settings.button_label_1.label",
+          "info": "t:sections.image-banner.blocks.buttons.settings.button_label_1.info"
+        },
+        {
+            "type": "url",
+            "id": "button_link_1",
+            "label": "t:sections.image-banner.blocks.buttons.settings.button_link_1.label"
+        },
+        {
+            "type": "checkbox",
+            "id": "button_style_secondary_1",
+            "default": false,
+            "label": "t:sections.image-banner.blocks.buttons.settings.button_style_secondary_1.label"
+        }
+    ],
+    "presets": [
+      {
+        "name": "More Question"
+      }
+    ]
+    
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

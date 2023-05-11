@@ -1,0 +1,224 @@
+{% assign metafield_products_list =  product.metafields.custom.cover_bundle_product.value %}
+
+{% if metafield_products_list != blank %}
+  <div class="prd_selable_section my_spacer ">
+    <div class="page-width">
+      {% if section.settings.main_heading != blank %}
+        <div class="heading_row title_col text_{{ section.settings.desktop_content_alignment }}">
+          <h2>
+            {{ section.settings.main_heading }}
+          </h2>
+          {% if section.settings.head_line != blank %}
+            <div class="sub_description">
+              {{ section.settings.head_line }}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+    <div class=" slider custom_prd_item card_collection"> 
+      {% for product in metafield_products_list  %}    
+        <div class="item--{{ product.id }} itm" {{ block.shopify_attributes }}>
+          <div class="inner_box_item">
+            <div class="product_img">
+              <img src="{{ product.images[0] | product_img_url: 'large' }}" alt{{ shop.name }} class="img_item">  
+            </div>
+            
+            <div class="prod_content_area center">
+              <h4 class="card__heading" id="title-{{ section_id }}-{{ product.id }}" >
+                <a href="{{ product.url }}" id="CardLink-{{ section_id }}-{{ product.id }}" class="full-unstyled-link">
+                  {{ product.title | escape }}
+                </a>
+              </h4>
+              
+              {% comment %}Start automatically added Judge.me widget{% endcomment %}
+              {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', concierge_install: true, product: product %}
+              {% comment %}End automatically added Judge.me widget{% endcomment %}
+          
+              {% if product.metafields.custom.product_sub_heading != blank %}
+                <div class="custom_prod_metafied">
+                  {{ product.metafields.custom.product_sub_heading }}
+                </div>
+              {% endif %} 
+          
+              {% render 'price', product: product, price_class: '',use_variant: true %}
+            </div>
+          
+            <div class="button_area">
+              <a href="{{ product.url }}">View Product</a> 
+            </div>
+          </div>
+        </div>
+      {% endfor %} 
+    </div>
+  </div>
+{% endif %} 
+
+
+		
+
+
+{% style %}
+  {% for product in metafield_products_list  %}  
+    .item--{{ product.id }} .inner_box_item {
+      position: relative;
+      border-radius: 40px 40px 10px 10px;
+      -webkit-box-shadow: 0 0 3px 1px rgb(18 11 11 / 10%);
+      box-shadow: 0 0 3px 1px #120b0b1a;
+      border-radius: 40px 40px 10px 10px;
+      overflow: hidden;
+      background-color: #ffffff;
+    }
+    .item--{{ product.id }} .prod_content_area {
+      padding: 25px;  
+    }
+  
+    @media screen and (max-width: 767.98px) {
+      .item--{{ product.id }} .inner_box_item {
+        border-radius: 20px 20px 10px 10px;
+      }
+      .item--{{ product.id }} .prod_content_area {
+        padding: 15px;  
+      }
+    }
+    
+  {% endfor %} 
+  
+  .prd_selable_section {
+    padding: 0px 15px;
+    overflow: hidden;
+  }
+  .prd_selable_section .slick-list {
+    overflow: visible;
+  }
+  .prd_selable_section .slick-track {
+    padding: 20px 0px;
+  }
+  .prd_selable_section .slick-slide {
+    padding-left: 25px;
+    padding-right: 25px;
+  } 
+  .product_img {
+    position: relative;
+  }
+  .product_img:after {
+    content: "";
+    padding-bottom: 100%;
+    display: block;
+  }
+  .product_img .img_item {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+  
+  @media screen and (max-width: 1680.98px) {
+    .prd_selable_section .slick-slide {
+      padding-left: 15px;
+      padding-right: 15px;
+    }  
+  }
+
+  @media screen and (max-width: 767.98px) {
+    .prd_selable_section .slick-slide {
+      padding-left: 7px;
+      padding-right: 7px;
+    } 
+    .prd_selable_section .slick-list {
+      overflow: hidden;
+    }
+  } 
+
+{% endstyle %}
+
+
+{% schema %}
+  {
+    "name": "Custom Covered Bundle M-F",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Content"
+        },
+        {
+            "type": "text",
+            "id": "main_heading",
+            "label": "Heading",
+            "default": "Heading"
+        },
+        {
+            "type": "richtext",
+            "id": "head_line",
+            "label": "Description",
+            "default": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>" 
+        },
+        {
+          "type": "select",
+          "id": "desktop_content_alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__1.label"
+            },
+            {
+              "value": "center",
+              "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__2.label"
+            },
+            {
+              "value": "right",
+              "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__3.label"
+            }
+          ],
+        "default": "center",
+        "label": "Text Alignment"
+      }
+    ],
+    "presets": [
+       {
+         "name": "Custom Covered Bundle M-F"
+       }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+  $('.custom_prd_item').slick({
+    infinite: false,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    dots: false,
+    arrows: true,
+    autoplay: true,
+    autoplaySpeed: 2500,
+    responsive: [
+      {
+        breakpoint: 1281,
+        settings: {
+          slidesToShow: 4
+        }
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1
+        }
+      }
+    ] 
+  });
+{% endjavascript %}
+
+
+

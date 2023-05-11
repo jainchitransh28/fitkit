@@ -1,0 +1,109 @@
+{{ 'custom-marquee.css' | asset_url | stylesheet_tag }}
+{%  if section.blocks.size > 0 %}
+  <div class="marquee_section {% if section.settings.top_bottom_margin == true %} my_spacer {% endif %}">
+    <div class="marquee_row">
+      <div class="slider one-time">
+       {% for block in section.blocks %}
+          {% if block.settings.text != blank %}
+            <div>
+              <div class="slidexx" {{ block.shopify_attributes }}>
+                <span class="icon_item">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="21.896" height="19.289" viewBox="0 0 21.896 19.289">
+                    <path id="Path_85" data-name="Path 85" d="M687.114-605.392a18.772,18.772,0,0,1,2.311-3.61,29.708,29.708,0,0,1,6.188-5.687,39.911,39.911,0,0,1,4.02-2.469.508.508,0,0,1,.592,0,.461.461,0,0,1,.179.474.49.49,0,0,1-.189.3,35.3,35.3,0,0,0-7.645,9.252,33.184,33.184,0,0,0-3.545,8.6c-.01.039-.027.077-.034.117a.491.491,0,0,1-.374.431.515.515,0,0,1-.533-.211q-.618-.674-1.241-1.343l-8.109-8.773a.725.725,0,0,1-.193-.276.487.487,0,0,1,.53-.629c1.065,0,2.13,0,3.195,0,.4,0,.8.006,1.195,0a.661.661,0,0,1,.55.253q1.426,1.651,2.862,3.294Z" transform="translate(-678.517 617.254)" fill="#fff"/>
+                  </svg>  
+                </span>
+                <div class="label">
+                  {{ block.settings.text }}    
+                </div>
+              </div>
+            </div>
+        {% endif %}
+      {% endfor %} 
+      </div>
+    </div>
+  </div>
+{% endif %}
+                      
+{% style %}
+  .marquee_section {
+    overflow: hidden;
+    background-color: {{ section.settings.bg_color}};
+    padding: 20px 0px;
+    position: relative;
+  } 
+
+  @media screen and (max-width: 1680.98px) {
+  .marquee_section {
+    padding: 16px 0px;
+  }
+}
+
+  
+{% endstyle %}
+
+{% schema %}
+  {
+    "name": "Custom Marquee",
+    "settings": [
+        {
+              "type": "color",
+              "id": "bg_color",
+              "label": "Background Color",
+              "default": "#76B6B1"
+        },
+        {
+            "type": "checkbox",
+            "id": "top_bottom_margin",
+            "label": "Spacer",
+            "default": false
+        }
+      ],
+      "blocks": [
+         {
+           "name": "Item",
+           "type": "item",
+           "settings": [
+             {
+               "type": "richtext",
+               "id": "text",
+               "label": "Text",
+               "default": "<p>Text</p>"
+             }
+           ]
+         }
+      ],
+      "presets": [
+        {
+          "name": "Custom Marquee",
+           "blocks": [
+              {
+                "type": "item"
+              },
+              {
+                "type": "item"
+              }
+          ]
+        }
+      ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+  $(".one-time").slick({
+    centerMode:true,
+    draggable: false,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    speed: 5000,
+    infinite: true,
+    cssEase: 'linear',
+    autoplay: true,
+    autoplaySpeed: 0,
+    pauseOnHover: true,
+    arrows: false,
+    variableWidth: true
+    });
+{% endjavascript %}

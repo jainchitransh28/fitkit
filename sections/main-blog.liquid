@@ -1,0 +1,275 @@
+{{ 'component-article-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'section-main-blog.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  {% comment %}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  {% endcomment %}
+
+  #shopify-section-{{ section.id }} .main-blog {
+    margin: 60px 0px 100px;
+  }
+  #shopify-section-{{ section.id }} .blog_group_list {
+    background-image: url('{{ 'wave_img2.png' | asset_url}}');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: left top;
+    padding: 70px 15px;
+  }
+  #shopify-section-{{ section.id }} .blog_articles_grid .article-card__image img,
+  #shopify-section-{{ section.id }} .blog_articles_grid .article-card__image  {
+    border-radius: 40px 40px 0px 0px;
+  }
+  #shopify-section-{{ section.id }} .blog_articles_grid .card {
+    border-radius: 40px 40px 10px 10px;
+    overflow: hidden;
+    background-color: #ffffff;
+  }
+  #shopify-section-{{ section.id }} .blog_articles_grid .article {
+    box-shadow: 0 0 10px 1px rgba(0,0,0,0.1);
+    border-radius: 40px 40px 10px 10px;
+  }
+  #shopify-section-{{ section.id }} .blog_articles_grid .card--card .card__content {
+    padding: 0px;
+  }
+  #shopify-section-{{ section.id }} .read_more_block {
+    grid-row-start: 3;  
+  }
+  #shopify-section-{{ section.id }} .read_more_block a {
+    background-color: #EA6463;
+    color: #ffffff;
+    display: block;
+    text-align: center;
+    border-radius: 0 0 10px 10px;
+    padding: 10px 15px;
+  }
+  .blog-articles.blog_articles_grid {
+    column-gap: 30px;
+    row-gap: 30px;
+  }
+  .blog_articles_grid .article-card__excerpt {
+    margin-bottom: 0px;
+  }
+  .show_category {
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+  .blog-articles  .card--standard>.card__content .card__information {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+ 
+
+  @media screen and (min-width: 575px) {
+    {% comment %}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+    {% endcomment %}
+    
+    .blog-articles.blog_articles_grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .blog-articles.blog_articles_grid {
+      grid-template-columns: 1fr 1fr 1fr;
+      column-gap: 60px;
+      row-gap: 60px;
+    }
+  }
+
+  @media screen and (max-width: 767.98px) {
+    #shopify-section-{{ section.id }} .blog_group_list {
+      background-size: 100% auto;
+      padding: 30px 15px;
+    }
+    #shopify-section-{{ section.id }} .main-blog {
+      margin: 40px 0px 60px;
+    }
+  }
+
+  @media screen and (max-width: 375.98px) {
+    #shopify-section-{{ section.id }} .blog_group_list {
+      background-size: auto 20%;
+    }
+  }
+
+  
+
+  
+{%- endstyle -%}
+
+{%- paginate blog.articles by 6 -%}
+  <div class="main-blog  section-{{ section.id }}-padding--1">
+
+    <div class="page-width">
+      {% if section.settings.main_heading != blank %}
+      <div class="heading_row title_col text_{{ section.settings.desktop_content_alignment }}">
+        <h2>
+          {{ section.settings.main_heading }}
+        </h2>
+        {% if section.settings.head_line != blank %}
+          <div class="sub_description">
+            {{ section.settings.head_line }}
+          </div>
+        {% endif %}
+        </div>
+      </div>
+    {% endif %}
+   
+    {% comment %}
+    <h1 class="title--primary">{{ blog.title | escape }}</h1>
+    {% endcomment %}
+
+    
+    <div class="blog_group_list">
+      <div class="page-width">
+        <div class="blog-articles {% if section.settings.layout == 'collage' %}blog-articles--collage {% else %} blog_articles_grid {% endif %}">
+          {%- for article in blog.articles -%}
+            <div class="blog-articles__article article">
+              {%- render 'article-card',
+                article: article,
+                media_height: section.settings.image_height,
+                media_aspect_ratio: article.image.aspect_ratio,
+                show_image: section.settings.show_image,
+                show_date: section.settings.show_date,
+                show_author: section.settings.show_author,
+                show_excerpt: true,
+                section_layout: section.settings.layout
+              -%}
+          </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+ 
+
+
+    {%- if paginate.pages > 1 -%}
+      {%- render 'pagination', paginate: paginate -%}
+    {%- endif -%}
+   
+  </div>
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "t:sections.main-blog.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+        "type": "header",
+        "content": "Content"
+    },
+    {
+        "type": "text",
+        "id": "main_heading",
+        "label": "Heading",
+        "default": "Heading"
+    },
+    {
+        "type": "richtext",
+        "id": "head_line",
+        "label": "Description",
+        "default": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>" 
+    },
+    {
+          "type": "select",
+          "id": "desktop_content_alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__1.label"
+            },
+            {
+              "value": "center",
+              "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__2.label"
+            },
+            {
+              "value": "right",
+              "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__3.label"
+            }
+          ],
+        "default": "center",
+        "label": "Text Alignment"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-blog.settings.header.content"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "options": [
+        {
+          "value": "grid",
+          "label": "t:sections.main-blog.settings.layout.options__1.label"
+        },
+        {
+          "value": "collage",
+          "label": "t:sections.main-blog.settings.layout.options__2.label"
+        }
+      ],
+      "default": "collage",
+      "label": "t:sections.main-blog.settings.layout.label",
+      "info": "t:sections.main-blog.settings.layout.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "default": true,
+      "label": "t:sections.main-blog.settings.show_image.label"
+    },
+    {
+      "type": "select",
+      "id": "image_height",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sections.main-blog.settings.image_height.options__1.label"
+        },
+        {
+          "value": "small",
+          "label": "t:sections.main-blog.settings.image_height.options__2.label"
+        },
+        {
+          "value": "medium",
+          "label": "t:sections.main-blog.settings.image_height.options__3.label"
+        },
+        {
+          "value": "large",
+          "label": "t:sections.main-blog.settings.image_height.options__4.label"
+        }
+      ],
+      "default": "medium",
+      "label": "t:sections.main-blog.settings.image_height.label",
+      "info": "t:sections.main-blog.settings.image_height.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "default": true,
+      "label": "t:sections.main-blog.settings.show_date.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "default": false,
+      "label": "t:sections.main-blog.settings.show_author.label"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.main-blog.settings.paragraph.content"
+    }
+  ]
+}
+{% endschema %}

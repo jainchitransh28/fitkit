@@ -1,0 +1,542 @@
+<div class="review_section  my_spacer">
+  <span class="img_group">
+    <span class="img1">
+      <img src="{{ "show2.png" | asset_url }}" alt="{{ shop.name }}">
+    </span>
+    <span class="img2">
+      <img src="{{ "show1.png" | asset_url }}" alt="{{ shop.name }}">
+    </span>
+    <span class="img3">
+      <img src="{{ "show3.png" | asset_url }}" alt="{{ shop.name }}">
+    </span>
+    <span class="img4">
+      <img src="{{ "show4.png" | asset_url }}" alt="{{ shop.name }}">
+    </span>
+  </span>
+  <div class="page-width">
+    {% if section.settings.customer_say != blank or section.settings.review_based != blank %}
+      <div class="heading_row title_col text_{{ section.settings.desktop_content_alignment }}">
+        {% if section.settings.customer_say != blank %}
+        <div class="heading">
+          {{ section.settings.customer_say }}  
+        </div>
+        {% endif %}
+  
+        {% if section.settings.review_based != blank %}
+          <div class="based_on_review sub_description">
+            <p>
+              <span class="star">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                  <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                  <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                  <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                  <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                  <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                </svg>
+              </span> 
+              <span>{{ section.settings.review_based }}</span>
+            </p>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %} 
+
+    <div class="review_body"> 
+      {% for block in section.blocks %}
+        <div class="review_card_box  rev_box_{{ block.id }}">
+          <div class="rev_item">
+            <div class="upper_box">
+              {% if block.settings.name != blank %}
+                <div class="name_item">
+                  <div class="client_name">{{ block.settings.name }}</div>
+                  <span class="status">VERIFIED</span>
+                </div>
+              {% endif %}
+          
+              {% if block.settings.date != blank %}
+                <div class="date_item">
+                  {{ block.settings.date }}
+                </div>
+              {% endif %}
+
+              {% if block.settings.feedback_title != blank %}
+                <div class="feedback">
+                  <div class="feed_star">
+
+                    {% if block.settings.rating_star == 'one' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                      <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                    </svg>
+                    {% elsif block.settings.rating_star == 'two' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                      <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                      <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                    </svg>
+                    {% elsif block.settings.rating_star == 'three' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                      <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                      <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                      <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                    </svg>
+                    {% elsif block.settings.rating_star == 'four' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                      <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                      <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                      <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                      <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                    </svg>
+                    {% elsif block.settings.rating_star == 'five' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                      <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                      <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                      <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                      <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25.12" height="23.598" viewBox="0 0 25.12 23.598">
+                      <path id="Polygon_9" data-name="Polygon 9" d="M12.56,0l4.4,7.068L25.12,9.014l-5.447,6.314.65,8.27L12.56,20.432,4.8,23.6l.65-8.27L0,9.014,8.164,7.068Z" fill="#eaa663"/>
+                    </svg>
+                    {% endif %}
+                  </div>
+      
+                  {% if block.settings.feedback_title != blank %}
+                    <div class="feed_heading">
+                      {{ block.settings.feedback_title }}
+                    </div>
+                  {% endif %}
+      
+                  {% if block.settings.feedback_content != blank %}
+                    <div class="feed_content">
+                      {{ block.settings.feedback_content }}
+                    </div>
+                  {% endif %}
+                  
+                </div>
+              {% endif %}
+            </div>
+
+            {% if block.settings.prod_review_name != blank %}
+              <div class="card_inner_footer">
+                {{ block.settings.prod_review_name | upcase }}
+              </div>
+            {% endif %}
+        
+          </div>         
+        </div>
+        {% style %}
+          .review_body .rev_box_{{ block.id }} {
+            padding-left: 15px;
+            padding-right: 15px;
+            -webkit-break-inside:avoid;
+            -moz-break-inside:avoid;
+            page-break-inside: avoid;
+            break-inside:avoid;
+            display: inline-block;
+            width: 100%;
+          }
+          .rev_box_{{ block.id }} .rev_item {
+            background-color: #FBFAFB;
+            -webkit-box-shadow: 0 0 10px 1px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px 1px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            border: 1px solid #EBEBEB;
+            margin-top: 1px;
+          }
+          .rev_box_{{ block.id }} .upper_box {
+            padding: 20px;
+          }
+          .rev_box_{{ block.id }} .name_item {
+            margin-bottom: 5px;
+          }
+          .rev_box_{{ block.id }} .client_name {
+             color: #777474;
+             font-weight: 700;
+             font-size: calc(var(--font-body-scale) * 13px);
+             line-height: calc(var(--font-body-scale) * 16px);
+           }
+           .rev_box_{{ block.id }} .status {
+              font-size: 7px;
+              color: #fff;
+              background-color: var(--gradient-base-accent-1);
+              display: inline-block;
+              padding: 2px 15px;
+              border-radius: 5px;
+              line-height: 10px;
+           }
+           .rev_box_{{ block.id }} .date_item {
+              font-size: 10px;
+              color: #777474;
+              line-height: 11px;
+              margin-bottom: 5px;
+           }
+           .rev_box_{{ block.id }} .feed_star {
+             margin-bottom: 5px;
+           }
+           .rev_box_{{ block.id }} .feed_star svg {
+              width: 17px;
+              height: 16px;
+           }
+           .rev_box_{{ block.id }} .feed_heading  {
+              color: #777474;
+              font-weight: 700;
+              font-size: calc(var(--font-body-scale) * 12px);
+              line-height: calc(var(--font-body-scale) * 14px);
+              margin-bottom: 5px;
+           }
+           .rev_box_{{ block.id }} .feed_content {
+              font-size: calc(var(--font-body-scale) * 12px);
+              line-height: calc(var(--font-body-scale) * 16px);
+             color: #777474;
+           }
+           .rev_box_{{ block.id }} .feed_content p {
+              margin: 0px;
+           }
+           .rev_box_{{ block.id }} .card_inner_footer {
+             border-top: 1px solid #EBEBEB;
+             color: #EA6463;
+             font-size: calc(var(--font-body-scale) * 9px);
+             line-height: calc(var(--font-body-scale) * 11px);
+             padding: 12px 20px;
+           }
+
+           @media screen and (max-width: 1280.98px) {
+               .rev_box_{{ block.id }} .rev_item {
+                  margin-bottom: 30px;
+              }
+           }
+          
+        {% endstyle %}
+      {% endfor %}
+    </div>
+      
+  </div>
+
+  {% if section.settings.show_pagination == true %}
+  <div class="static_pagination_wrapper">
+      <ul class="static_list" role="list">
+        <li>
+          <a href="/pages/review" class="link" >1</a>
+        </li>
+        <li><a href="/pages/reviews-2" class="link" >2</a></li>
+         <li><a href="/pages/reviews-3" class="link" >3</a></li>
+      </ul>
+  </div>  
+  {% endif %}
+</div>
+
+{% style %}
+  #shopify-section-{{ section.id}} .review_section {
+    position: relative;
+    overflow: hidden;
+    padding: 0px 15px;
+  }
+  #shopify-section-{{ section.id}} .review_body {
+    -moz-column-count: 3;
+    -webkit-column-count: 3; 
+    column-count: 3;
+    -moz-column-gap:30px;
+    -webkit-column-gap: 30px;
+    column-gap: 30px;
+    margin-left: -15px;
+    margin-right: -15px;
+    position: relative;
+    padding-top: 20px;
+    margin-top: 20px;
+  }
+  #shopify-section-{{ section.id}} .review_body:before {
+    content: "";
+    border-top: 1px solid #EBEBEB;
+    position: absolute;
+    right: 15px;
+    left: 15px;
+    top: 0px;
+  }
+  #shopify-section-{{ section.id}} .heading {
+    font-size: calc(var(--font-body-scale) * 17px);
+    line-height: calc(var(--font-body-scale) * 20px);
+  }
+  #shopify-section-{{ section.id}}  .based_on_review span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  #shopify-section-{{ section.id}} .based_on_review .star {
+    margin-right: 5px; 
+  }
+  #shopify-section-{{ section.id}} .based_on_review .star svg {
+    width: 15px;
+    height: 14px;
+  }
+  .review_section .img_group {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+  }
+  .review_section .img_group > span {
+    position: absolute;
+  }
+  .review_section .img1 {
+    left: -8%;
+    top: 4%;
+    width: 200px;
+  }
+  .review_section .img2 {
+    right: -5%;
+    top: 30%;
+    width: 200px;
+  }
+  .review_section .img3 {
+    bottom: 0;
+    right: -5%;
+    width: 180px;
+  }
+  .review_section .img4 {
+    top: 50%;
+    left: -4.5%;
+    width: 170px;
+  }
+  .static_pagination_wrapper {
+     margin-top: 80px; 
+  }
+  .static_pagination_wrapper .static_list {
+    display: flex;
+    justify-content: center;
+  }
+  .static_pagination_wrapper .static_list a {
+    color: rgb(var(--color-foreground));
+    text-decoration: none;
+  }
+  .static_pagination_wrapper li:not(:last-child) {
+    margin-right: 1rem;
+  }
+
+  @media screen and (max-width: 1440.98px) {
+    .review_section .img1 {
+      width: 150px;
+    }
+    .review_section .img2 {
+      width: 150px;
+    }
+    .review_section .img3 {
+      width: 130px;
+    }
+    .review_section .img4 {
+      width: 120px;
+    }
+  }
+
+  @media screen and (max-width: 1280.98px) {
+    #shopify-section-{{ section.id}} .review_body {
+      -moz-column-gap: 0px;
+      -webkit-column-gap: 0px;
+      column-gap: 0px;
+    }
+  }
+  
+  @media screen and (max-width: 767.98px) {
+    .review_section .img1 {
+      left: -20%;
+      width: 100px;
+    }
+    .review_section .img2 {
+      top: 9%;
+      right: -25%;
+    }
+    .review_section .img3 {
+      right: -25%;
+    }
+    .review_section .img4 {
+      width: 120px;
+    }
+    #shopify-section-{{ section.id}} .review_body {
+      -moz-column-count: 2;
+      -webkit-column-count: 2; 
+      column-count: 2;  
+    }
+  }
+
+   @media screen and (max-width: 480.98px) {
+    #shopify-section-{{ section.id}} .review_body {
+      -moz-column-count: 1;
+      -webkit-column-count: 1; 
+      column-count: 1;
+    }
+  }
+
+
+  
+{% endstyle %}
+
+{% schema %}
+  {
+    "name": "Custom Customer Review",
+    "max_blocks": 48,
+    "settings": [
+      {
+        "type": "text",
+        "id": "customer_say",
+        "label": "Heading",
+        "default": "Heading Here"
+      },
+      {
+        "type": "text",
+        "id": "review_based",
+        "label": "Total Reviews Counts",
+        "default": "Based on 3978 reviews"
+      },
+      {
+        "type": "select",
+        "id": "desktop_content_alignment",
+        "options": [
+            {
+              "value": "left",
+              "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__1.label"
+            },
+            {
+              "value": "center",
+              "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__2.label"
+            },
+            {
+              "value": "right",
+              "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__3.label"
+            }
+        ],
+        "default": "center",
+        "label": "Text Alignment"
+      },
+       {
+        "type": "header",
+        "content": "Pagination"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_pagination",
+        "label": "Show Pagination",
+        "default": true
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Review Column",
+        "type": "review-column",
+        "settings": [
+           {
+             "type": "text",
+             "id": "name",
+             "label": "Client Name",
+             "default": "John"
+           },
+           {
+             "type": "text",
+             "id": "date",
+             "label": "Date",
+             "default": "30/06/2022"
+           },
+           {
+              "type": "select",
+              "id": "rating_star",
+              "label": "Review",
+                "options": [
+                  {
+                    "value": "one",
+                    "label": "One Star"
+                  },
+                  {
+                    "value": "two",
+                    "label": "Two Star"
+                  },
+                  {
+                    "value": "three",
+                    "label": "Three Star"
+                  },
+                  {
+                    "value": "four",
+                    "label": "Four Star"
+                  },
+                  {
+                    "value": "five",
+                    "label": "Five Star"
+                  }
+                ],
+                "default": "five"
+           },
+           {
+             "type": "text",
+             "id": "feedback_title",
+             "label": "Review Title",
+             "default": "The Best Product"
+           },
+           {
+             "type": "richtext",
+             "id": "feedback_content",
+             "label": "Review Content",
+             "default": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>"
+           },
+           {
+             "type": "text",
+             "id": "prod_review_name",
+             "label": "Product Name",
+             "default": "Fikit Shower Gel"
+           }
+       ]
+        
+      }
+    ],
+    "presets": [
+      {
+        "name": "Custom Customer Review",
+        "blocks": [
+          {
+            "type": "review-column"
+          },
+          {
+            "type": "review-column"
+          },
+          {
+            "type": "review-column"
+          },
+          {
+            "type": "review-column"
+          },
+           {
+            "type": "review-column"
+          },
+          {
+            "type": "review-column"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,291 @@
+{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
+{{ 'newsletter-section.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+
+  .newsletter_wrapper {
+    padding: 155px 15px;
+    position: relative;
+    z-index: 2;
+  }
+  .newsletter_wrapper:before {
+    background-image: url('{{ "dot5.png" | asset_url }}');
+    background-position: left bottom;
+    background-repeat: repeat;
+    background-size: auto;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0.27;
+    pointer-events: none;
+    z-index: -1;
+  }
+  .placeholderStyle input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #5c5c5c !important;
+    opacity: 1 !important;
+  }
+  .placeholderStyleinput::-moz-placeholder { /* Firefox 19+ */
+    color: #5c5c5c !important;
+    opacity: 1 !important;
+  }
+  .placeholderStyle input:-ms-input-placeholder { /* IE 10+ */
+    color: #5c5c5c !important;
+    opacity: 1 !important;
+  }
+  .placeholderStyle input:-moz-placeholder { /* Firefox 18- */
+   color: #5c5c5c !important;
+   opacity: 1 !important;
+  }
+  .newsletter_wrapper .email_field input {
+    flex: 0 0 calc(100% - 180px);
+    max-width: calc(100% - 180px);
+  }
+  #shopify-section-{{ section.id}} .newsletter_wrapper input {
+    border-radius: 20px;
+    background-color: #fff;
+    border: 1px solid #707070;
+    padding: 13px 25px 11px 25px;
+    height: auto;
+    min-height: auto;
+    color: #5c5c5c;
+  }
+  .newsletter_wrapper .field:after,  .newsletter_wrapper .field:before  {
+    display: none;
+  }
+  .newsletter_wrapper .newsletter-form {
+    max-width: 100%;
+  }
+  .newsletter_wrapper h2 {
+    margin-bottom: 40px;
+  }
+  .newsletter_wrapper .newsletter-form__field-wrapper {
+    display: flex;
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+  .newsletter_wrapper .name_field {
+    flex: 0 0 calc(32% - 20px);
+    max-width: calc(32% - 20px);
+    margin-right: 20px;
+  }
+  .newsletter_wrapper .email_field {
+    flex: 0 0 68%;
+    max-width: 68%;
+  }
+  .newsletter_wrapper .newsletter-form__button.field__button:not(:focus-visible) {
+    background: #473247;
+    min-width: 200px;
+    font-weight: 600;
+    border-radius: 15px;
+    width: auto;
+    border: 2px solid #473247;
+    padding: 15px 15px;
+  }
+  .newsletter_wrapper .newsletter-form__button.field__button:hover {
+    background: #fff;
+    color: #473247;
+  }
+
+
+  @media screen and (max-width: 989.98px) {
+    .newsletter_wrapper .name_field {
+      flex: 0 0 100%;
+      max-width: 100%;
+      margin-right: 0px;
+    }
+    .newsletter_wrapper .email_field {
+      flex: 0 0 100%;
+      max-width: 100%;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    .newsletter_wrapper .email_field input {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+    .newsletter_wrapper .newsletter-form__button.field__button:not(:focus-visible) {
+      position: static;
+      flex: 0 0 100%;
+      max-width: 100%;
+      height: auto;
+      margin-top: 10px;
+    }
+    #shopify-section-{{ section.id}} .newsletter_wrapper input {
+      border-radius: 15px;
+      padding: 13px 20px  11px 20px;
+    }
+  }
+
+  @media screen and (max-width: 767.98px) {
+    #shopify-section-{{ section.id}} .newsletter_wrapper input {
+      padding: 11px 20px 9px;
+      font-size: 12px;
+    }
+    .newsletter_wrapper .newsletter-form__button.field__button:not(:focus-visible) {
+      padding: 10px 15px;
+    }
+    .newsletter_wrapper {
+      padding: 55px 15px;
+    }
+    .newsletter_wrapper h2 {
+      margin-bottom: 10px;
+    }
+    .placeholderStyle input::-webkit-input-placeholder { 
+      font-size: 12px !important;
+    }
+    .placeholderStyleinput::-moz-placeholder { 
+      font-size: 12px !important;
+    }
+    .placeholderStyle input:-ms-input-placeholder { 
+      font-size: 12px !important;
+    }
+    .placeholderStyle input:-moz-placeholder { 
+       font-size: 12px !important;
+    }
+      
+    
+  }
+ 
+
+{%- endstyle -%}
+
+
+<div class="newsletter center my_spacer">
+  <div class=" newsletter_wrapper color-{{ section.settings.color_scheme }}">
+    <div class="page-width">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when '@app' -%}
+          {% render block %}
+        {%- when 'heading' -%}
+          <h2 {{ block.shopify_attributes }}>{{ block.settings.heading | escape }}</h2>
+        {%- when 'email_form' -%}
+          <div {{ block.shopify_attributes }}>
+            {% form 'customer', class: 'newsletter-form' %}
+              <input type="hidden" name="contact[tags]" value="newsletter">
+              <div class="newsletter-form__field-wrapper">
+                <div class="field placeholderStyle name_field">
+                  <input class="field__input" autocomplete="name" type="text" id="newsletter-name" name="newsletter-name"  value="{% if customer.name != blank %}{{ customer.name }}{% endif %}" placeholder="Full Name">
+                  <label class="field__label hidden" for="newsletter-name">Full Name</label>
+                </div>
+                <div class="field placeholderStyle email_field">
+                  <input
+                    id="NewsletterForm--{{ section.id }}"
+                    type="email"
+                    name="contact[email]"
+                    class="field__input "
+                    value="{{ form.email }}"
+                    aria-required="true"
+                    autocorrect="off"
+                    autocapitalize="off"
+                    autocomplete="email"
+                    {% if form.errors %}
+                      autofocus
+                      aria-invalid="true"
+                      aria-describedby="Newsletter-error--{{ section.id }}"
+                    {% elsif form.posted_successfully? %}
+                      aria-describedby="Newsletter-success--{{ section.id }}"
+                    {% endif %}
+                    placeholder="{{ 'newsletter.label' | t }}"
+                    required
+                  >
+                 
+                  <label class="field__label hidden" for="NewsletterForm--{{ section.id }}">
+                    {{ 'newsletter.label' | t }}
+                  </label>
+                  
+                  <button type="submit" class="newsletter-form__button field__button" name="commit" id="Subscribe" aria-label="{{ 'newsletter.button_label' | t }}">
+                    GET STRONGER
+                  </button>
+                </div>
+                {%- if form.errors -%}
+                  <small class="newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">{% render 'icon-error' %}{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</small>
+                {%- endif -%}
+              </div>
+              {%- if form.posted_successfully? -%}
+                <h3 class="newsletter-form__message newsletter-form__message--success form__message" id="Newsletter-success--{{ section.id }}" tabindex="-1" autofocus>{% render 'icon-success' %}{{ 'newsletter.success' | t }}</h3>
+              {%- endif -%}
+            {% endform %}
+          </div>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Newsletter",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "accent-1",
+          "label": "t:sections.all.colors.accent_1.label"
+        },
+        {
+          "value": "accent-2",
+          "label": "t:sections.all.colors.accent_2.label"
+        },
+        {
+          "value": "background-1",
+          "label": "t:sections.all.colors.background_1.label"
+        },
+        {
+          "value": "background-2",
+          "label": "t:sections.all.colors.background_2.label"
+        },
+        {
+          "value": "inverse",
+          "label": "t:sections.all.colors.inverse.label"
+        }
+      ],
+      "default": "background-1",
+      "label": "t:sections.all.colors.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "t:sections.newsletter.blocks.heading.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Subscribe to our emails",
+          "label": "t:sections.newsletter.blocks.heading.settings.heading.label"
+        }
+      ]
+    },
+    {
+      "type": "email_form",
+      "name": "t:sections.newsletter.blocks.email_form.name",
+      "limit": 1
+    },
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Newsletter",
+      "blocks": [
+        {
+          "type": "heading"
+        },
+        {
+          "type": "email_form"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

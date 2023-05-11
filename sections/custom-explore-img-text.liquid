@@ -1,0 +1,149 @@
+{{ 'custom-explore-img-text.css' | asset_url | stylesheet_tag }}
+
+<div class="explore_section">
+  <div class="page-width">
+    <div class="explore_row custom_row align-items-center">
+      <div class="custom_column explore_content">
+        <div class="content_entry_col  ">
+          {% if section.settings.main_heading != blank %}
+            <div class="title_col">
+              <h2>
+                {{ section.settings.main_heading }}
+              </h2>
+            </div>
+          {% endif %}
+
+           {% if section.settings.desc != blank %}
+            <div class="body_content">
+              {{ section.settings.desc }}
+            </div>
+          {% endif %}
+          
+          {% if section.settings.paragraph != blank %}
+          <div class="richtext_block">
+            {{ section.settings.paragraph }} 
+          </div>
+          {% endif %}
+    
+          {% if section.settings.button_label_1 != blank  %}
+          <div class="button_row">
+            <a{% if section.settings.button_link_1 == blank %} role="link" aria-disabled="true"{% else %} 
+            href="{{ section.settings.button_link_1 }}"{% endif %} 
+            class="button{% if section.settings.button_style_secondary_1 %} button--secondary {% else %} button--primary{% endif %}">
+            {{ section.settings.button_label_1 | escape }}
+            </a>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+
+       <div class="custom_column explore_img">
+        <div class="figure_box">
+          {%- if section.settings.image != blank -%}
+            <img src="{{ section.settings.image | image_url }}" alt="{{ section.settings.image.alt | escape }}" loading="lazy">
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%} 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% style %}
+  #shopify-section-{{ section.id}} .explore_section {
+    background-image: url('{{ 'wave_img2.png' | asset_url }}');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: left top;
+    padding: 170px 15px 0px;
+    margin-bottom: 100px;
+  }
+
+  @media screen and (max-width: 1680.98px) {
+     #shopify-section-{{ section.id}} .explore_section {
+      padding: 140px 15px 0px;
+      margin-bottom: 60px;
+    }
+  }
+
+  @media screen and (max-width: 989.98px) {
+    #shopify-section-{{ section.id}} .explore_section {
+      padding: 70px 15px 0px;
+    }
+  }
+
+  @media screen and (max-width: 767.98px) {
+    #shopify-section-{{ section.id}} .explore_section {
+      padding: 30px 15px 0px;
+    }
+  }
+ 
+{% endstyle %}
+
+
+{% schema %}
+  {
+    "name": "Custom Grid Image",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        },
+        {
+            "type": "header",
+            "content": "Content"
+        },
+        {
+            "type": "text",
+            "id": "main_heading",
+            "label": "Heading",
+            "default": "Heading"
+        },
+        {
+            "type": "richtext",
+            "id": "desc",
+            "label": "Description",
+            "default": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>" 
+        },
+        {
+            "type": "header",
+            "content": "Button"
+        },
+        {
+          "type": "text",
+          "id": "button_label_1",
+          "default": "Button label",
+          "label": "t:sections.image-banner.blocks.buttons.settings.button_label_1.label",
+          "info": "t:sections.image-banner.blocks.buttons.settings.button_label_1.info"
+        },
+        {
+            "type": "url",
+            "id": "button_link_1",
+            "label": "t:sections.image-banner.blocks.buttons.settings.button_link_1.label"
+        },
+        {
+            "type": "checkbox",
+            "id": "button_style_secondary_1",
+            "default": false,
+            "label": "t:sections.image-banner.blocks.buttons.settings.button_style_secondary_1.label"
+        }
+    ],
+    "presets": [
+      {
+        "name": "Custom Grid Image"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,104 @@
+{{ 'section-blog-post.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  .article-template__hero-container {
+    max-width: 100%;
+  }
+  
+{% endstyle %}
+
+<article class="article-template" itemscope itemtype="http://schema.org/BlogPosting">
+        {%- if article.image -%}
+          <div class="article-template__hero-container">
+            <div class="article-template__hero-{{ section.settings.image_height }} media"
+              itemprop="image"
+              
+            >
+              <div class="page-width zoom">
+                <h1 class="article-template__title" itemprop="headline">{{ article.title | escape }}</h1>
+                <div class="button_blog">
+                  <span class="button button--primary psuedo_none btn_small">{{ article.metafields.article.category_text }}</span>
+                </div>
+                
+              </div>
+            </div>
+            
+          </div>
+          {% style %}
+            .article-template__hero-container .media {
+              background-image: url('{{ article.image | image_url }}');
+              background-size: cover;
+              background-position: left top;
+            }
+            .article-template__hero-container .zoom {
+              height: 100%;
+              display: flex;
+              justify-content: center;
+              flex-wrap: wrap;
+              align-content: center;
+              text-align: center;
+            }
+            .article-template__title {
+              color: #ffffff;
+            }
+            .article-template__hero-container .zoom *  {
+              flex: 0 0 100%;
+              max-width: 100%;
+            }
+            .button_blog .button {
+              text-transform: capitalize;
+              padding-left: 30px;
+              padding-right: 30px;
+              pointer-events: none;
+            }
+            .button_blog .button--primary {
+              background-color:{{ article.metafields.article.category_color }};
+              border-color: {{ article.metafields.article.category_color }};
+            }
+            .button_blog .button--primary:hover{
+              background-color:transparent;
+              color: {{ article.metafields.article.category_color }};
+              border-color: {{ article.metafields.article.category_color }};
+            }
+
+             @media screen and (max-width: 767.98px) {
+                .button_blog .button {
+                  min-width: auto;
+                }
+             }
+          {% endstyle %}
+        {%- endif -%}
+</article>
+
+
+
+{% schema %}
+{
+  "name": "t:sections.main-article.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+        {
+          "type": "select",
+          "id": "image_height",
+          "options": [
+            {
+              "value": "small",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__2.label"
+            },
+            {
+              "value": "medium",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__3.label"
+            },
+            {
+              "value": "large",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__4.label"
+            }
+          ],
+          "default": "medium",
+          "label": "t:sections.main-article.blocks.featured_image.settings.image_height.label",
+          "info": "t:sections.main-article.blocks.featured_image.settings.image_height.info"
+        }
+    ]
+}
+{% endschema %}

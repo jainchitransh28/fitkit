@@ -1,0 +1,228 @@
+{{ 'custom-how-to-use.css' | asset_url | stylesheet_tag }}
+
+{% if section.settings.main_heading != blank %}
+<div class="how_use_section">
+  <div class="page-width">
+    {% if section.settings.main_heading != blank %}
+      <div class="heading_row title_col text_{{ section.settings.desktop_content_alignment }}">
+        <div class="page-width">
+            <h2>
+              {{ section.settings.main_heading }}
+            </h2>
+          {% if section.settings.head_line != blank %}
+            <div class="sub_description">
+              {{ section.settings.head_line }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="use_kit_prod">
+        <div class="slider  how_to_use_slider">
+         {% for block in section.blocks %}
+             <div class="swape_slide" {{ block.shopify_attributes }}>
+              <div class="card_item" {{ block.shopify_attributes }}>
+                <div class="card_kit text_{{ block.settings.desktop_content_alignment }}">
+                  <div class="img_kit">
+                     {% if block.settings.kit_text_url != blank  %}
+                        <a href="{{ block.settings.kit_text_url }}">
+                     {% endif %} 
+                    {%- if block.settings.image != blank -%}
+                      <img src="{{ block.settings.image | image_url }}" alt="{{ block.settings.image.alt | escape }}" loading="lazy">
+                      {% if block.settings.kit_text_url != blank  %}
+                        </a>
+                      {% endif %} 
+                    {%- else -%}
+                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                    {%- endif -%} 
+                  </div>
+                  <div class="content_kit">
+                     {% if block.settings.kit_heading != blank %}
+                      <div class="heading_box">
+                        <h3>{{ block.settings.kit_heading }}</h3>
+                      </div>
+                     {%- endif -%} 
+                  </div>
+      
+                  {% if block.settings.kit_link_text != blank %}
+                  <div class="link_text">
+                    <a href="{{ block.settings.kit_text_url }}" >
+                      {{ block.settings.kit_link_text }}
+                    </a>
+                  </div>
+                  {% endif %} 
+              </div>
+            </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+
+
+{% schema %}
+{
+  "name": "Custom How Use Kit",
+  "settings": [
+      {
+          "type": "header",
+          "content": "Content"
+      },
+      {
+          "type": "text",
+          "id": "main_heading",
+          "label": "Heading",
+          "default": "Heading"
+      },
+      {
+          "type": "richtext",
+          "id": "head_line",
+          "label": "Description",
+          "default": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>" 
+      },
+      {
+        "type": "select",
+        "id": "desktop_content_alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__1.label"
+          },
+          {
+            "value": "center",
+            "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__2.label"
+          },
+          {
+            "value": "right",
+            "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__3.label"
+          }
+        ],
+      "default": "center",
+      "label": "Text Alignment"
+    }
+  ],
+  "blocks": [
+     {
+       "name": "Item",
+       "type": "item",
+       "settings": [
+          {
+            "type": "header",
+            "content": "Image"
+         },
+         {
+             "type": "image_picker",
+             "id": "image",
+             "label": "Image"
+         },
+         {
+             "type": "header",
+             "content": "Content"       
+         },
+         {
+             "type": "text",
+             "id": "kit_heading",
+             "label": "Heading",
+             "default": "Heading"
+         },
+         {
+             "type": "text",
+             "id": "kit_link_text",
+             "label": "Text",
+             "default": "Text"
+         },
+         {
+             "type": "url",
+             "id": "kit_text_url",
+             "label": "Text URL"
+         },
+         {
+              "type": "select",
+              "id": "desktop_content_alignment",
+              "options": [
+                {
+                  "value": "left",
+                  "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__1.label"
+                },
+                {
+                  "value": "center",
+                  "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__2.label"
+                },
+                {
+                  "value": "right",
+                  "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__3.label"
+                }
+              ],
+            "default": "center",
+            "label": "Text Alignment"
+          }
+       ]
+     }
+  ],
+  "presets": [
+      {
+        "name": "Custom How Use Kit",
+        "blocks": [
+            {
+              "type": "item"
+            },
+            {
+              "type": "item"
+            },
+            {
+              "type": "item"
+            },
+            {
+              "type": "item"
+            }
+        ]
+    }    
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+  $('.how_to_use_slider').slick({
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    dots: false,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 2500,
+    infinite: true,
+    responsive: [
+      {
+        breakpoint: 1199,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          arrows: true,      
+        }
+      },
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          arrows: true,      
+        }
+      },
+      {
+        breakpoint: 575,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: true,      
+        }
+      }
+    ] 
+  });
+{% endjavascript %}

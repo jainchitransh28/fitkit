@@ -1,0 +1,197 @@
+.image_under_heading {
+  margin-top: 25px;
+}
+.image_under_heading ul {
+  display: inline-block;
+}
+.image_under_heading ul li {
+  padding: 0px 10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.product_tab_section.my_spacer {
+  margin-bottom: 0px;
+}
+.tab_mainBox {
+  background-image: url('{{ 'waver.jpg' | asset_url }}');
+  background-position: left top 61px;
+  background-repeat: no-repeat;
+  padding: 0px 15px 120px;
+  background-size: 100% auto;
+}
+.tab_mainBox .prodTabs {
+  display: table;
+  width: 100%;
+}
+.tab_mainBox .tablinks {
+  display: table-cell;
+  text-align: center;
+}
+.tab_mainBox .tablinks span {
+  cursor: pointer;
+  padding: 20px;
+  border-radius: 30px 30px 0 0;
+  border: 1px solid transparent;
+  display: block;
+  text-transform: uppercase;
+  border-bottom: 1px solid #707070;
+  background-color: #ffffff;
+}
+.tab_mainBox span.active {
+  border-bottom: 1px solid #fff;
+  border: 1px solid #707070;
+  border-bottom: 1px solid #fff;
+}
+.tab_mainBox .tab-main:after, .tab_mainBox .tab-main:before {
+  content: "";
+  display: block;
+  clear: both;
+}
+.tab_mainBox .tab-main.active {
+  display: block;
+}
+.tab_mainBox .left_box_item {
+  padding-right: 20px;
+}
+.tab_mainBox .left_box_item, .tab_mainBox .right_box_item {
+  width: 50%;
+  float: left;
+}
+.tab_mainBox .right_box_item {
+  padding-left: 20px;
+}
+.tab_mainBox .tab-main {
+  padding: 60px;
+  display: none;
+  min-height: 380px;
+}
+.tab_mainBox .tabs-out {
+  border: 1px solid #707070;
+  border-top: 0;
+  border-radius: 0px 0px 30px 30px;
+  background-color: #ffffff;
+}
+.tab_mainBox .tab-main p:first-of-type {
+    margin-top: 0;
+}
+.tab_mainBox .tab-main p:last-of-type {
+  margin-bottom: 0px;
+}
+.tab_mainBox .accordionStyler {
+  display: none;
+}
+.tab_mainBox .tab-main ul {
+  list-style: disc;
+  list-style-position: inside;
+  margin: 15px 0px;
+}
+.tab_mainBox .tab-main ol {
+   list-style: auto;
+  list-style-position: inside;
+  
+}
+.tab_mainBox .tab-main ul li, .tab_mainBox .tab-main ol li {
+  margin: 5px 0px;
+}
+
+@media screen and (max-width: 989.98px) {
+  .tab_mainBox .prodTabs {
+    display: none;
+  }
+  .tab_mainBox .accordionStyler {
+    display: block;
+  }
+  .tab_mainBox .left_box_item, .tab_mainBox .right_box_item {
+    float: none;
+    width: 100%;
+  }
+  .tab_mainBox .tablinks {
+    display: block;
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  .tab_mainBox .tabs-out {
+    border: 0px;
+    background-color: transparent;
+  }
+  .tab_mainBox .tab-main {
+    padding: 0px 15px 15px;
+    font-size: calc(var(--font-body-scale) * 12px);
+    line-height: calc(var(--font-body-scale) * 18px);
+    min-height: auto;
+  }
+  .tab_mainBox .tablinks span {
+    border-radius: 10px;
+    border: 1px solid #707070;
+    padding: 9px 15px;
+    font-size: calc(var(--font-body-scale) * 12px);
+    line-height: calc(var(--font-body-scale) * 18px);
+    position: relative;
+  }
+   .tab_mainBox .tablinks span:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      -o-transform: ;
+      -moz-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+  }
+  .tab_mainBox .tablinks span:after {
+     border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-top: 6px solid;
+    right: 20px;
+  }
+  .tab_mainBox .tablinks span.active:after {
+    border-bottom: 6px solid;
+    border-top: 0px solid;
+  }
+  .tab_mainBox span.active {
+    border-bottom: 1px solid #707070;
+  }
+  .tab_mainBox .left_box_item {
+    padding: 0px 0px 15px;
+  }
+  .tab_mainBox .right_box_item {
+    padding-left: 0px;
+  }
+  .product_tab_section {
+    padding: 50px 0px;
+    background-image: url('{{ 'line-gap.png' | asset_url }}');
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: 100% auto;
+    background-color: #4fa8db;
+  }
+  .product_tab_section .title_col h2, .product_tab_section .title_col .h2,
+  .product_tab_section .sub_description, .tab_mainBox .tab-main {
+    color: #fff;
+  }
+  .tab_mainBox {
+    background-image: none;
+    padding: 0px 15px;
+  }
+  .image_under_heading ul li {
+    padding: 0 5px;
+  }
+  .image_under_heading ul li img {
+    width: 50px;
+  }
+  .product_tab_section.my_spacer {
+    margin-bottom: 60px;
+  }
+ 
+}
+
+@media screen and (max-width: 767.98px) {
+  .product_tab_section {
+    background-size: auto 70%;
+  }
+  .image_under_heading ul li img {
+    width: 40px;
+  }
+  
+}
+ 

@@ -1,0 +1,238 @@
+{{ 'custom-image-with-list-text.css' | asset_url | stylesheet_tag }}
+
+{% if section.settings.main_heading != blank %}
+<div class="my_spacer">
+{% endif %}  
+  
+{% if section.settings.main_heading != blank %}
+  <div class="heading_row title_col text_{{ section.settings.desktop_content_alignment }}">
+    <div class="page-width">
+        <h2>
+          {{ section.settings.main_heading }}
+        </h2>
+      {% if section.settings.head_line != blank %}
+        <div class="sub_description">
+          {{ section.settings.head_line }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
+
+{%- if section.settings.image != blank or section.settings.video_url != blank -%} 
+<div class="img_with_list_section">
+  <div class="page-width">
+    <div class="image_text_row custom_row">
+      <div class="img_column_box">
+        <div class="image_column {{ section.settings.show_video }}">
+          {%- if section.settings.video_url != blank and section.settings.show_video == true -%}
+            <video preload="auto" autoplay loop muted playsinline webkit-playsinline x5-playsinline>
+            <source src="{{ section.settings.video_url }}" type="video/mp4">
+            <source src="{{ section.settings.video_url }}" type="video/webm">
+            <source src="{{ section.settings.video_url  }}" type="video/ogg">
+            <source src="{{ section.settings.video_url }}" type="video/mov">
+             Your browser doesn't support HTML5 video tag.
+            </video>
+          {% elsif section.settings.image != blank %}  
+            <img src="{{ section.settings.image | image_url }}" alt="{{ section.settings.image.alt | escape }}" loading="lazy">
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%} 
+        </div>
+        
+      </div>
+      <div class="content_column_box">
+        <div class="content_column">
+           {% if section.settings.listing != blank %}
+            <div class="list_block">
+              {{ section.settings.listing }} 
+            </div>
+           {% endif %}
+         
+          {% if section.settings.paragraph != blank %}
+          <div class="richtext_block">
+            {{ section.settings.paragraph }} 
+          </div>
+          {% endif %}
+    
+          {%- if section.settings.button_label_1 != blank -%}
+          <div class="button_block">
+            <a{% if section.settings.button_link_1 == blank %} role="link" aria-disabled="true"{% else %} 
+              href="{{ section.settings.button_link_1 }}"{% endif %} 
+              class="button{% if section.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}">
+              {{ section.settings.button_label_1 | escape }}
+            </a>
+          </div>
+         {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%- endif -%}
+
+{% if section.settings.main_heading != blank %}
+</div>
+{% endif %}  
+
+
+{% style %}
+  #shopify-section-{{ section.id}} .img_with_list_section {
+    {% if section.settings.bg_image != blank %}  
+    background-image: url('{{ section.settings.bg_image | image_url }}');
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-color: #ffffff;
+    {% endif %} 
+    padding: 0px 15px 100px;
+  }
+  
+  @media screen and (max-width: 1680.98px) {
+    #shopify-section-{{ section.id}} .img_with_list_section {
+      padding: 0px 15px 60px;
+    }
+    
+  }
+
+  @media screen and (max-width: 767.98px) {
+    #shopify-section-{{ section.id}} .img_with_list_section {
+        padding: 0px 15px;
+    }
+ }
+   
+{%  endstyle %}
+
+
+{% schema %}
+  {
+    "name": "Custom Image With List",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Background Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "bg_image",
+          "label": "Background Image"
+        },
+        {
+            "type": "header",
+            "content": "Content"
+        },
+        {
+            "type": "text",
+            "id": "main_heading",
+            "label": "Heading",
+            "default": "Heading"
+        },
+        {
+            "type": "richtext",
+            "id": "head_line",
+            "label": "Description",
+            "default": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>" 
+        },
+        {
+            "type": "header",
+            "content": "Button"
+        },
+        {
+          "type": "select",
+          "id": "desktop_content_alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__1.label"
+            },
+            {
+              "value": "center",
+              "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__2.label"
+            },
+            {
+              "value": "right",
+              "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__3.label"
+            }
+          ],
+        "default": "center",
+        "label": "Text Alignment"
+      },
+      {
+          "type": "header",
+          "content": "Media"
+      },
+      {
+          "type": "checkbox",
+          "id": "show_video",
+          "label": "Enable video",
+          "default": false
+      },
+      {
+          "type": "text",
+          "id": "video_url",
+          "label": "Video Url link",
+          "info": "Portrait Video Ratio 4:5"
+      },
+      {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+      },
+      {
+          "type": "header",
+          "content": "content"
+      },
+      {
+          "type": "html",
+          "id": "listing",
+          "label": "List Points"
+      },
+      {
+          "type": "richtext",
+          "id": "paragraph",
+          "label": "Content",
+          "default": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>"
+      },
+      {
+          "type": "header",
+          "content": "Button"
+      },
+      {
+          "type": "text",
+          "id": "button_label_1",
+          "default": "Button label",
+          "label": "t:sections.image-banner.blocks.buttons.settings.button_label_1.label",
+          "info": "t:sections.image-banner.blocks.buttons.settings.button_label_1.info"
+      },
+      {
+          "type": "url",
+          "id": "button_link_1",
+          "label": "t:sections.image-banner.blocks.buttons.settings.button_link_1.label"
+      },
+      {
+          "type": "checkbox",
+          "id": "button_style_secondary_1",
+          "default": false,
+          "label": "t:sections.image-banner.blocks.buttons.settings.button_style_secondary_1.label"
+      }
+    ],
+    "presets": [
+        {
+          "name": "Custom Image With List"
+        }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+  $('a').click(function(){
+    $('html, body').animate({
+        scrollTop: $( $(this).attr('href') ).offset().top - 50 
+    }, 2500);
+    return false;
+});
+{% endjavascript %}
+
+

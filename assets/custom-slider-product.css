@@ -1,0 +1,31 @@
+.slider_prod_section .slick-track img {
+  margin: 0px auto;
+}
+.slider_prod_section .slick-slide {
+  padding: 0px 40px;
+}
+
+@media screen and (max-width: 1680.98px) {
+  .slider_prod_section .slick-slide {
+     padding: 0px 30px;
+  }
+}
+
+@media screen and (max-width: 1024.98px) {
+  .slider_prod_section .slick-slide {
+     padding: 0px 20px;
+  }
+}
+
+@media screen and (max-width: 767.98px) {
+  .slider_prod_section .slick-slide {
+   width: 200px;
+  }
+
+} 
+
+
+
+
+
+

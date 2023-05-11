@@ -1,0 +1,134 @@
+<div class="common_banner_section">
+  <div class="page-width">
+      {% if section.settings.main_heading != blank %}
+      <div class="banner_content_box title_col text_{{ section.settings.desktop_content_alignment }}">
+        <h1>
+          {{ section.settings.main_heading }}
+        </h1>
+        {% if section.settings.head_line != blank %}
+          <div class="sub_description">
+            {{ section.settings.head_line }}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% style %}
+  #shopify-section-{{ section.id}} .common_banner_section {
+    background-image: url('{{ section.settings.bg_img | image_url }}');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 245px 15px;
+    color: #fff;
+    position: relative;
+    z-index: 2;
+  }
+  #shopify-section-{{ section.id}} .common_banner_section:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    background-color: {{section.settings.bg_overlay}};
+    z-index: -1;
+    opacity: {{section.settings.overlay_range | times: 1.0 | divided_by: 10 }};
+  }
+  .common_banner_section .title_col h1 {
+    color: #ffffff;
+    text-shadow: 0 2px 5px rgb(0 0 0 / 60%);
+  }
+
+  @media screen and (max-width: 1680.98px) {
+    #shopify-section-{{ section.id}} .common_banner_section {
+      padding: 195px 15px;
+    }
+  }
+
+  @media screen and (max-width: 767.98px) {
+    #shopify-section-{{ section.id}} .common_banner_section {
+      padding: 95px 15px;
+    }
+  }
+  
+{% endstyle %}  
+
+
+{% schema %}
+  {
+    "name": "Custom Common Banner",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "bg_img",
+            "label": "Background Image"
+        },
+        {
+            "type": "color",
+            "id": "bg_overlay",
+            "label": "Background Overlay",
+            "default": "#000000"
+        },
+        {
+            "type": "range",
+            "id": "overlay_range",
+            "min": 0,
+            "max": 9,
+            "step": 1,
+            "label": "Overlay Range",
+            "info": "Select Between 0 to 9",
+            "default": 1
+        },
+        {
+            "type": "header",
+            "content": "Content"
+        },
+        {
+            "type": "text",
+            "id": "main_heading",
+            "label": "Heading",
+            "default": "Heading"
+        },
+        {
+            "type": "richtext",
+            "id": "head_line",
+            "label": "Description",
+            "default": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>" 
+        },
+        {
+          "type": "select",
+          "id": "desktop_content_alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__1.label"
+            },
+            {
+              "value": "center",
+              "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__2.label"
+            },
+            {
+              "value": "right",
+              "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__3.label"
+            }
+          ],
+        "default": "center",
+        "label": "Text Alignment"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Custom Common Banner"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

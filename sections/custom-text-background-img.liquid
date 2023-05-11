@@ -1,0 +1,98 @@
+{% if section.settings.main_heading != blank  or section.settings.faq_desc != blank %}
+<div class="text_bg_section text_{{ section.settings.desktop_content_alignment }}">
+  <div class="page-width">
+    
+      <div class="heading_row title_col text_{{ section.settings.desktop_content_alignment }}">
+        {% if section.settings.main_heading != blank %}
+        <h2>
+          {{ section.settings.main_heading }}
+        </h2>
+         {% endif %}
+        {% if section.settings.faq_desc != blank %}
+          <div class="sub_description">
+            {{ section.settings.faq_desc }}
+          </div>
+        {% endif %}
+      </div>
+  </div>
+</div>
+{% endif %}
+
+{% style %}
+  #shopify-section-{{ section.id}} .text_bg_section {
+    background-image: url('{{ 'wave_img.png' | asset_url }}');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: left top;
+    padding: 130px 15px 190px;
+    margin-bottom: 100px;
+  }
+
+  @media screen and (max-width: 1680.98px) {
+    #shopify-section-{{ section.id}} .text_bg_section {
+      padding: 100px 15px 150px;
+      margin-bottom: 60px;
+    }
+  }
+
+  @media screen and (max-width: 767.98px) {
+    #shopify-section-{{ section.id}} .text_bg_section {
+      padding: 40px 15px;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+  {
+    "name": "Custom Text Background",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Content"
+        },
+        {
+            "type": "text",
+            "id": "main_heading",
+            "label": "Heading",
+            "default": "Heading"
+        },
+        {
+            "type": "richtext",
+            "id": "faq_desc",
+            "label": "Description",
+            "default": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>" 
+        },
+        {
+          "type": "select",
+          "id": "desktop_content_alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__1.label"
+            },
+            {
+              "value": "center",
+              "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__2.label"
+            },
+            {
+              "value": "right",
+              "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__3.label"
+            }
+          ],
+        "default": "center",
+        "label": "Text Alignment"
+      }
+    ],
+    "presets": [
+        {
+          "name": "Custom Text Background"
+        }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,33 @@
+.team_section {
+  margin: 100px 0px;
+}
+.fancybox-container .fancybox-bg {
+  display: block;
+}
+.fancybox-iframe, .fancybox-video {
+  object-fit: cover;
+}
+.team_section .member_mains {
+  margin-bottom: 90px;
+}
+
+
+@media screen and (max-width: 1680.98px) {
+  .team_section {
+    margin: 60px 0px;
+  }
+  .team_section .button_block .button {
+    max-width: 430px;
+  }
+}
+
+@media screen and (max-width: 767.98px) {
+  .team_section .member_mains {
+    margin-bottom: 50px;
+  }
+  
+}
+
+@media screen and (max-width: 575.98px) {
+
+}

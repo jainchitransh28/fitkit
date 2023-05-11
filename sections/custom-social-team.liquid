@@ -1,0 +1,363 @@
+ <div class="social_team_section my_spacer">
+   {% if section.settings.main_heading != blank %}
+    <div class="heading_row title_col text_{{ section.settings.desktop_content_alignment }}">
+      <div class="page-width">
+          <h2>
+            {{ section.settings.main_heading }}
+          </h2>
+        {% if section.settings.head_line != blank %}
+          <div class="sub_description">
+            {{ section.settings.head_line }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+
+   {% if section.blocks.size > 0 %}
+  <div class="social_member_mains">
+    <div class="slider social_team_slider_center"> 
+      {% for block in section.blocks %}
+          <div class="social_team_slide slide_item__{{ block.id }}" {{ block.shopify_attributes }}>
+            <div class="contain_m_box">
+              <div class="member_img_col ">
+                {% if block.settings.image != blank or block.settings.flip_image != blank %}
+                <div class="flipper">
+                   {% if block.settings.image != blank %}
+                  <div clas="front">
+                    <img src="{{ block.settings.image | image_url: width: 400, height: 330, crop: 'bottom'}}" loading="lazy" class="front_img">
+                  </div>
+                  {% endif %} 
+                  
+                  {% if block.settings.flip_image != blank %}
+                  <div class="back">
+                      <img src="{{ block.settings.flip_image | image_url: width: 400, height: 330, crop: 'bottom'}}" loading="lazy" class="hover_img">
+                  </div>
+                  {% endif %}
+                </div>
+                
+                {% else %}
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
+              </div>
+              
+              {% if block.settings.body_content != blank %}
+                <div class="content_col">
+                  {% if block.settings.client_name != blank %}
+                    <div class="team_col">
+                      <span class="team_name_field">{{ block.settings.client_name }}</span>
+                       {% if block.settings.status != blank %}
+                        <span class="team_status_field">{{ block.settings.status }}</span>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+              
+                  <div class="body_content">
+                    {{ block.settings.body_content }}
+                  </div>
+
+                  {% if block.settings.button_label_1 != blank  %}
+                  <div class="button_ele_row">
+                    <a href="{{ block.settings.button_link_1 }}" class="button button--primary btn_small">
+                      {{ block.settings.button_label_1 }}
+                    </a>
+                  </div>
+                  {% endif %}
+                  
+                </div>
+              {% endif %}
+            </div>
+          </div>
+      {% endfor %}
+    </div>
+  </div>  
+  {% endif %}
+</div>
+
+
+{% style %}
+   #shopify-section-{{ section.id}} .social_team_section {
+    background-image: url('{{ 'waver.jpg' | asset_url }}');
+    background-position: center bottom;
+    background-repeat: no-repeat; 
+    padding: 0px 15px 270px;
+    background-size: 100% auto;
+    overflow: hidden;
+  }
+  #shopify-section-{{ section.id}} .slick-list {
+    overflow: visible;
+  }
+ {% for block in section.blocks %}
+    .slide_item__{{ block.id }} {
+      padding: 0px 30px;
+    }
+    .slide_item__{{ block.id }} .contain_m_box {
+      background-color: #fff;
+      border-radius: 30px;
+      width: 380px;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+    .slide_item__{{ block.id }} .content_col {
+      padding: 20px 30px;
+    }
+    .slide_item__{{ block.id }} .member_img_col img {
+      border-radius: 30px;
+    }
+    .slide_item__{{ block.id }} .team_name_field {
+      font-size: calc(var(--font-body-scale) * 14px);
+      line-height: calc(var(--font-body-scale) * 19px);
+    }
+    .slide_item__{{ block.id }} .team_col span {
+      display: block;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .slide_item__{{ block.id }} .team_status_field {
+      font-size: calc(var(--font-body-scale) * 8px);
+      line-height: calc(var(--font-body-scale) * 10px);
+      color: var(--gradient-base-accent-1);
+    }
+    .slide_item__{{ block.id }} .button_ele_row {
+      text-align: center;
+      margin-bottom: -35px;
+    }
+   .slide_item__{{ block.id }} .button--primary:hover {
+     background-color: #fff;
+   }
+    .contain_m_box {
+        -webkit-perspective: 1000;
+         perspective: 1000;
+    }
+    .contain_m_box:hover .flipper {
+      -webkit-transform: rotateY(180deg);
+      transform: rotateY(180deg);
+    }
+    .contain_m_box .flipper {
+        -webkit-transition: 1.5s;
+        -webkit-transform-style: preserve-3d;
+        position: relative;
+    }
+
+    .contain_m_box .front,
+    .contain_m_box .back {
+        -webkit-backface-visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .contain_m_box .front {
+        z-index: 2;
+    }
+    .contain_m_box .back {
+      -webkit-transform: rotateY(180deg);
+      transform: rotateY(180deg);
+    }
+   
+        
+    @media screen and (max-width: 1680.98px) {
+      .slide_item__{{ block.id }} {
+        padding: 0px 15px;
+      }
+/*    .slide_item__{{ block.id }} .team_name_field {
+        font-size: calc(var(--font-body-scale) * 15px);
+        line-height: calc(var(--font-body-scale) * 19px);
+      } */
+      
+    }
+
+    @media screen and (max-width: 991.98px) {
+      #shopify-section-{{ section.id}} .social_team_section {
+        padding: 0px 15px 150px;
+        background-size: auto 50%;
+      }
+    }
+
+    @media screen and (max-width: 767.98px) {
+      .slide_item__{{ block.id }} .contain_m_box {  
+        width: 270px;
+      }
+      .slide_item__{{ block.id }} .content_col {
+        padding: 20px 20px;
+      }
+      .slide_item__{{ block.id }} .team_name_field {
+        font-size: calc(var(--font-body-scale) * 12px);
+        line-height: calc(var(--font-body-scale) * 15px);
+      }
+      
+    }
+
+   
+  {% endfor %}
+  
+{% endstyle %}
+                
+{% schema %}
+  {
+    "name": "Custom Social Team",
+    "settings": [
+         {
+            "type": "header",
+            "content": "Content"
+        },
+        {
+            "type": "text",
+            "id": "main_heading",
+            "label": "Heading",
+            "default": "Heading"
+        },
+        {
+            "type": "richtext",
+            "id": "head_line",
+            "label": "Description",
+            "default": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>" 
+        },
+        {
+          "type": "select",
+          "id": "desktop_content_alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__1.label"
+            },
+            {
+              "value": "center",
+              "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__2.label"
+            },
+            {
+              "value": "right",
+              "label": "t:sections.image-with-text.settings.desktop_content_alignment.options__3.label"
+            }
+          ],
+        "default": "center",
+        "label": "Text Alignment"
+      }
+    ],
+      "blocks": [
+       {
+         "name": "Grid",
+         "type": "grid",
+         "settings": [
+           {
+               "type": "image_picker",
+               "id": "image",
+               "label": "Image"
+           },
+           {
+               "type": "image_picker",
+               "id": "flip_image",
+               "label": "Hover Image"
+           },
+           {
+                "type": "text",
+                "id": "client_name",
+                "label": "Client Name",
+                "default": "JON"
+           },
+           {
+                "type": "text",
+                "id": "status",
+                "label": "Client Status",
+                "default": "VERIFIED"
+           },
+           {
+                "type": "richtext",
+                "id": "body_content",
+                "label": "Description",
+                "default": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>"
+           },
+           {
+                "type": "header",
+                "content": "Button"
+            },
+            {
+                "type": "text",
+                "id": "button_label_1",
+                "default": "Button label",
+                "label": "t:sections.image-banner.blocks.buttons.settings.button_label_1.label",
+                "info": "t:sections.image-banner.blocks.buttons.settings.button_label_1.info"
+            },
+            {
+                "type": "url",
+                "id": "button_link_1",
+                "label": "t:sections.image-banner.blocks.buttons.settings.button_link_1.label"
+            }
+         ]
+       }
+    ],
+    "presets": [
+        {
+          "name": "Custom Social Team",
+           "blocks": [
+              {
+                "type": "grid"
+              },
+              {
+                "type": "grid"
+              },
+              {
+                "type": "grid"
+              },
+              {
+                "type": "grid"
+              },
+              {
+                "type": "grid"
+              },
+              {
+                "type": "grid"
+              },
+              {
+                "type": "grid"
+              }
+          ]
+        }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+  $('.social_team_slider_center').slick({
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    dots: false,
+    arrows: false,
+    centerMode: true,
+    centerPadding: '60px',
+    autoplay: true,
+    autoplaySpeed: 15000,
+    responsive: [
+      {
+        breakpoint: 1281,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          centerMode: true,
+          centerPadding: '40px',
+        }
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          centerMode: true,
+          centerPadding: '40px',
+        }
+      },
+      {
+        breakpoint: 575,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerMode: true,
+          centerPadding: '40px',
+           variableWidth: true,
+        }
+      }
+    ] 
+  });
+{% endjavascript %}
